@@ -1,0 +1,27 @@
+{
+  "name": "sideshow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "bootstrap": "^3.3.6",
+    "bootstrap-router": "^0.1.0",
+    "chalk": "^1.1.1",
+    "express": "^4.13.4",
+    "foreman": "1.4.1",
+    "lodash": "^4.1.0",
+    "mongoose": "^4.3.7",
+    "morgan": "^1.6.1",
+    "node-sass-middleware": "^0.9.7",
+    "serve-favicon": "^2.3.0",
+    "socket.io": "^1.4.4",
+    "swig": "^1.4.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
