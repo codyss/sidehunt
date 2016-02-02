@@ -4,3 +4,4 @@ Structure for new Express App
 2) Swig for Templating
 3) SCSS
 4) Uses Bootstrap
+5) Socket.io
