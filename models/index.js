@@ -11,7 +11,7 @@ var projectSchema = new Schema({
   tags: [String],
   imgPath: String,
   upVotes: Number
-})
+});
 
 
 var userSchema = new Schema({
@@ -20,14 +20,14 @@ var userSchema = new Schema({
   githubName: String,
   projects: [{mongoose.Schema.Types.ObjectId, ref: 'Project'}],
   ideas: [{mongoose.Schema.Types.ObjectId, ref: 'Idea'}]
-})
+});
 
 var ideaSchema = new Schema({
   user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   name: String,
   description: String,
   upVotes: Number
-})
+});
 
 
 var Project = mongoose.model('Project', projectSchema);
@@ -37,9 +37,12 @@ var Idea = mongoose.model('Idea', ideaSchema);
 
 if(process.env.NODE_ENV === 'production') {
    var db = mongoose.connect(process.env.MONGOLAB_URI).connection;
-} else {
-  mongoose.connect('mongodb://localhost/APPNAME'); 
+} else if (process.env.NODE_ENV === 'testing') {
+  mongoose.connect('mongodb://localhost/sidelist-testing'); 
   var db = mongoose.connection;
+} else {
+  mongoose.connect('mongodb://localhost/sidelist'); 
+  var db = mongoose.connection; 
 }
 
 
