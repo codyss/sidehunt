@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bootstrapRouter = require('bootstrap-router');
 var _ = require('lodash');
+var Promise = require('bluebird');
 
 var models = require('../models/');
 
@@ -15,13 +16,17 @@ var Project = require('../models').Project;
 
 
 router.get('/', function(req, res, next ){
-  Project.find({}).populate('user')
-  .then(function(projects) {
-    console.log(projects[0]);
-    res.render("index", {
-    projects: projects,
-  });
-  }).then(null, function (err) {
+  Promise.all([
+     Project.find({}).populate('user'),
+     Idea.find({}).populate('user')
+    ])
+  .spread(function (projects, ideas) {
+      res.render("index", {
+      projects: projects,
+      ideas: ideas
+      });
+    })
+    .then(null, function (err) {
     console.log(err);
   });
 });
@@ -33,9 +38,20 @@ router.get('/add', function(req, res, next ){
     res.render("addproject");
 })
 
+router.get('/addidea', function(req, res, next ){
+    res.render("addidea");
+})
+
 
 router.post('/add', function (req, res, next) {
   Project.create(req.body).then(function(project) {
+    res.redirect('/');
+  })
+})
+
+
+router.post('/addidea', function (req, res, next) {
+  Idea.create(req.body).then(function(idea) {
     res.redirect('/');
   })
 })
