@@ -4,43 +4,27 @@
 
 
 <div class="jumbotron">
-  <h1>Hello, world!</h1>
-  <p>...</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  <h1>1601 Side Hunt!</h1>
+  <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
 </div>
 
-
+{% for project in projects %}
 <div class="row">
-  <div class="col-sm-6 col-md-4">
+  <div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-      <img src="/placeholder.jpg" alt="...">
+      <img id="project_img" class="img-responsive" src="/placeholder.jpg" alt="...">
       <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <text id="thumb-project-name">{{project.name}}</text>
+        <text id="thumb-project-user">By {{project.user.firstName}} {{project.user.lastName}}</text>
+        <p>{{project.description}}</p>
+        <p><a href="{{project.route}}" class="btn btn-primary" role="button">Details</a> 
+        <a href="#" class="btn btn-default" role="button">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
       </div>
     </div>
   </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="/placeholder.jpg" alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="/placeholder.jpg" alt="...">
-      <div class="caption">
-        <h3>Thumbnail label</h3>
-        <p>...</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-      </div>
-    </div>
-  </div>
+{% endfor %}
+
+
 </div>
 
 

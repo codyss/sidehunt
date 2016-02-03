@@ -7,17 +7,14 @@ var favicon = require('serve-favicon');
 var swig = require('swig');
 var socketio = require('socket.io');
 var server = app.listen(process.env.PORT || 3000);
-var io = socketio.listen(server);
 
 var routes = require('./routes/');
-var router = routes(io);
 
 var chalk = require('chalk');
 
 
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var bootstrapRouter = require('bootstrap-router');
 var _ = require('lodash');
 
 app.engine('html', swig.renderFile);
@@ -45,7 +42,7 @@ app.use(sass({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', router);
+app.use('/', routes);
 
 app.use(function (err, req, res, next) {
     console.log(chalk.magenta('      ' + err.message));

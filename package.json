@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bluebird": "^3.2.1",
     "body-parser": "^1.14.2",
     "bootstrap": "^3.3.6",
     "bootstrap-router": "^0.1.0",
