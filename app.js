@@ -6,7 +6,7 @@ var favicon = require('serve-favicon');
 
 var swig = require('swig');
 var socketio = require('socket.io');
-var server = app.listen(process.env.PORT || 3000);
+var server = app.listen(process.env.PORT || 3001);
 
 var routes = require('./routes/');
 
