@@ -3,6 +3,9 @@
 {% block content %}
 
 
+<div class="container">
+  <div class="container">   
+
 <div class="jumbotron jumbo-header">
   <h1>1601 Side Hunt!</h1>
   <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
@@ -10,12 +13,12 @@
 
 
 <div id="projects">
+<div class="row">
   {% for project in projects %}
-  <div class="row">
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
+    <!-- <div class=""> -->
+      <div class="thumbnail"> <!-- GIVE THIS  A MAX SIZE -->
         <img id="project_img" class="img-responsive" src="/placeholder.jpg" alt="...">
-        <div class="caption">
+        <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
           <text id="thumb-project-name">{{project.name}}</text>
           <text id="thumb-project-user">By {{project.user.firstName}} {{project.user.lastName}}</text>
           <p>{{project.description}}</p>
@@ -23,15 +26,15 @@
           <a href="#" class="btn btn-default" role="button">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   {% endfor %}
   </div>
 </div>
 
-<div id="ideas">
-{% for idea in ideas %}
+<!-- <div id="ideas">
 <div class="row">
-  <div class="col-sm-6 col-md-3">
+{% for idea in ideas %}
+  <div class="col-sm-6 col-lg-3">
     <div class="thumbnail">
       <img id="project_img" class="img-responsive" src="/placeholder.jpg" alt="...">
       <div class="caption">
@@ -46,6 +49,8 @@
 {% endfor %}
 </div>
 </div>
+</div>
+</div>   -->
 
 
 {% endblock %}
