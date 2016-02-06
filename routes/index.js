@@ -3,6 +3,7 @@ var router = express.Router();
 var bootstrapRouter = require('bootstrap-router');
 var _ = require('lodash');
 var Promise = require('bluebird');
+var mongoose = require('mongoose');
 
 var models = require('../models/');
 
@@ -32,14 +33,38 @@ router.get('/', function(req, res, next ){
 });
 
 
+router.get('/projects/:title', function (req, res, next) {
+    Project.findOne({title: req.params.title})
+    .then(function(project) {
+      res.render('project', {project: project});
+    })
+    .then(null, console.error);
+    
+})
 
+router.get('/ideas/:name', function (req, res, next) {
+    Idea.findOne({name: req.params.idea})
+    .then(function(idea) {
+      res.render('idea', {idea: idea});
+    }).then(null, console.error);
+});
 
 router.get('/add', function(req, res, next ){
     res.render("addproject");
-})
+});
 
 router.get('/addidea', function(req, res, next ){
     res.render("addidea");
+});
+
+router.post('/upvote/:type', function(req, res, next) {
+  var type = req.params.type; //collection to add to
+  type = type.slice(0,1).toUpperCase() + type.slice(1);
+  var data = req.body;
+  mongoose.model(type).findOneAndUpdate({title: data.title}, {$inc: {upVotes: 1}} , {new: true})
+  .then(function(project) {
+    res.json({upVotes: project.upVotes});
+  })
 })
 
 

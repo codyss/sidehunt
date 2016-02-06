@@ -12,18 +12,20 @@
     </div>
 
 
+    <h3>Projects</h3>
     <div class="side-list">
+
      <div class="row">
   {% for project in projects %}
     <!-- <div class=""> -->
       <div class="thumbnail"> <!-- GIVE THIS  A MAX SIZE -->
         <img id="project_img" class="img-responsive" src="/placeholder.jpg" alt="...">
         <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
-          <text id="thumb-project-name">{{project.name}}</text>
+          <text id="thumb-project-name">{{project.title}}</text>
           <text id="thumb-project-user">By {{project.user.firstName}} {{project.user.lastName}}</text>
           <p>{{project.description}}</p>
           <p><a href="{{project.route}}" class="btn btn-primary" role="button">Details</a> 
-          <a href="#" class="btn btn-default" role="button">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
+          <a class="btn btn-default upVoteButton" data-type="project" data-name="{{project.title}}">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
         </div>
       </div>
     <!-- </div> -->
@@ -31,7 +33,7 @@
       </div>
     </div>
 
-
+<h3>Ideas</h3>
 <div class="side-list">
 <div class="row">
 {% for idea in ideas %}
@@ -39,11 +41,11 @@
     <div class="thumbnail">
       <img id="project_img" class="img-responsive" src="/placeholder.jpg" alt="...">
       <div class="caption">
-        <text id="thumb-project-name">{{idea.name}}</text>
+        <text id="thumb-project-name">{{idea.title}}</text>
         <text id="thumb-project-user">By {{idea.user.firstName}} {{idea.user.lastName}}</text>
         <p>{{idea.description}}</p>
         <p><a href="{{project.route}}" class="btn btn-primary" role="button">Details</a> 
-        <a href="#" class="btn btn-default" role="button">{{idea.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
+        <a class="btn btn-default upVoteButton" data-type="idea" data-name="{{idea.title}}">{{idea.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
       </div>
     </div>
   <!-- </div> -->

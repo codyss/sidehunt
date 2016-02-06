@@ -34,9 +34,9 @@ var userSchema = new Schema({
 
 var ideaSchema = new Schema({
   user: {type: Schema.Types.ObjectId, ref: 'User'},
-  name: String,
+  title: String,
   description: String,
-  upVotes: Number
+  upVotes: {type: Number, default: 0}
 });
 
 
