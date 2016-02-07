@@ -32,24 +32,27 @@ $(document).ready(function () {
       $('.side-list-idea').animate({ scrollLeft: '-=855' }, 1000);
     });
 
-    //to be adjusted to be dynamic
+    //to be adjusted to be dynamic based on page width - scroll the right amount
 
+    $('.user-pic').each(function() {
+      var $img = $(this).find('img');
+      var userName = $(this).data('user');
+      // if (userName.length > 3 && $img.attr('src') < 3) {
+      //   console.log($img.attr('src'));
+      //   $.get('https://api.github.com/users/' + userName, function(data) {
+      //     console.log('github image fetched');
+      //     $img.attr('src', data.avatar_url);
+      //     $.post('/saveavatar', {url: data.avatar_url, title: $img.data('title')}, function (res) {
+      //       //
+      //     })
+      //   })
 
-    // Find the right repo github name to then do a get request on the image, do it on each image
-    // potential to save the link to the repo in a data attribute for the button
+      // }
+    });
+
+    // $('.user-pic > img').popover('show')
 
 });
 
-$('.user-pic').each(function() {
-  var $img = $(this).find('img');
-  var userName = $(this).data('user');
-  $.get('https://api.github.com/users/' + userName, function(data) {
-    $img.attr('src', data.avatar_url);  
-  })
-});
 
-// $.get('https://api.github.com/users/codyss', function(data) {
-//   $('#user-pic > img').attr('src', data.avatar_url);
-//   console.log(data.avatar_url);
-// });
 

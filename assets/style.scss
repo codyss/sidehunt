@@ -125,6 +125,10 @@ form {
     background-color: #ab181e;
     border-color: #ab181e;
   };
+  &:focus, &:active {
+    background-color: #CE1D25;
+    border-color: #CE1D25;
+  };
 }
 
 .user-pic {

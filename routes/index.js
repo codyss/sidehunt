@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 var bootstrapRouter = require('bootstrap-router');
 var _ = require('lodash');
 var Promise = require('bluebird');
@@ -81,6 +82,23 @@ router.post('/upvote/:type', function(req, res, next) {
 router.post('/add', function (req, res, next) {
   Project.create(req.body).then(function(project) {
     res.redirect('/');
+    return project;
+  }).then(function (project) {
+    var options = {
+      url: project.githubData,
+      headers: {
+      'User-Agent': 'sidelist'
+      }
+    };
+    request(options, function (err, res, body) {
+      if (!err) {
+        var data = JSON.parse(body)
+        Project.findOneAndUpdate({title: project.title}, {imgPath: data.avatar_url})
+        .then(null, function(err) {
+          console.log(err);
+        })
+      }
+    })
   })
 })
 
@@ -91,6 +109,13 @@ router.post('/addidea', function (req, res, next) {
   })
 })
 
+router.post('/saveavatar', function (req, res, next) {
+  var url = req.body.url;
+  var title = req.body.title;
+  Project.findOneAndUpdate({title: title}, {imgPath: url}).then(function () {
+    res.json({});
+  })
+})
 
 
 
