@@ -17,11 +17,20 @@ var Project = require('../models').Project;
 
 
 router.get('/', function(req, res, next ){
+  //Make side hunt the first project all the time
   Promise.all([
      Project.find({}).populate('user'),
      Idea.find({}).populate('user')
     ])
   .spread(function (projects, ideas) {
+      projects.sort(function (a, b) {
+        return a.upVotes - b.upVotes;
+      });
+      projects.reverse();
+      ideas.sort(function (a, b) {
+        return a.upVotes - b.upVotes;
+      });
+      ideas.reverse();
       res.render("index", {
       projects: projects,
       ideas: ideas

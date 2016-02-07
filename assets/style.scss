@@ -43,11 +43,12 @@ body {
 .side-list {
   overflow-x: auto;
   overflow-y: hidden;
-  height: 375px;
+  height: 450px;
+  margin-bottom: 25px;
 }
 
 .thumbnail {
-  width: 220px;
+  width: 275px;
   display: inline-block;
   margin: 5px;
   flex-basis: auto;
@@ -57,7 +58,7 @@ body {
 }
 
 .caption {
-  height: 150px;
+  height: 165px;
   p  {
     height: 60px;
   }
@@ -69,4 +70,52 @@ body {
 
 form {
   margin-top: 50px;
+}
+
+.section-name {
+  color: #CE1D25;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  text-transform: uppercase;
+}
+
+.jumbotron {
+  margin-top: 60px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: #CE1D25;
+  text-align: center;
+  color: white;
+}
+
+#search-form:focus {
+  width: 300px;
+}
+
+.upVoteButton, .upVoteButtonOff {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.upVoteButtonOff {
+  border: 2px solid #4e53ff;
+  color: blue;
+  &:hover {
+  border: 2px solid #4e53ff;
+  }
+  .glyphicon {
+  color: #4e53ff;  
+  }
+}
+
+
+.details-button {
+  background-color: #CE1D25;
+  border-color: #CE1D25;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>.active>a {
+  color: #CE1D25;
+  font-weight: 500;
 }
