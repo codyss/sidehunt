@@ -17,5 +17,22 @@ $(document).ready(function () {
   //   $(this).parent().toggleClass('active');
   // });
   
-})
+    $('.section-scroll span:nth-child(2)').on('click', function() {
+      console.log('clicked');
+      $('.side-list-project').scrollLeft(855);    
+    });
+    $('.section-scroll span:nth-child(1)').on('click', function() {
+      console.log('clicked');
+      $('.side-list-project').scrollLeft(-855);    
+    });
+
+     $('.section-scroll-idea span:nth-child(2)').on('click', function() {
+      console.log('clicked');
+      $('.side-list-project').scrollLeft(855);    
+    });
+    $('.section-scroll-idea span:nth-child(1)').on('click', function() {
+      console.log('clicked');
+      $('.side-list-project').scrollLeft(-855);    
+    });
+});
 

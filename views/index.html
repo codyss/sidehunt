@@ -7,14 +7,20 @@
   <div class="container" id='main-body'>   
 
     <div class="jumbotron jumbo-header">
-      <h1>1601 Side Hunt!</h1>
+      <h1 id='jumbo-heading'>1601 Side Hunt</h1>
       <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
     </div>
 
 
     <span class='section-name'>Projects</span>
-    <div class="side-list">
 
+    <span class="section-scroll">
+    <span class='glyphicon glyphicon-triangle-left'></span>
+    <span class='glyphicon glyphicon-triangle-right'></span>
+    </span>
+  
+    
+    <div class="side-list-project">
      <div class="row">
   {% for project in projects %}
     <!-- <div class=""> -->
@@ -34,7 +40,12 @@
     </div>
 
 <span class='section-name'>Ideas</span>
-<div class="side-list">
+  <span class="section-scroll-idea">
+    <span class='glyphicon glyphicon-triangle-left'></span>
+    <span class='glyphicon glyphicon-triangle-right'></span>
+  </span> 
+
+<div class="side-list-idea">
 <div class="row">
 {% for idea in ideas %}
   <!-- <div class="col-sm-6 col-lg-3"> -->

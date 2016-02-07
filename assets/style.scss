@@ -13,7 +13,7 @@ body {
 }
 
 #project_img {
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 
@@ -40,11 +40,12 @@ body {
   display: flex;
 }
 
-.side-list {
+.side-list-idea, .side-list-project {
   overflow-x: auto;
   overflow-y: hidden;
-  height: 450px;
-  margin-bottom: 25px;
+  height: 400px;
+  margin-bottom: 20px;
+  padding-left: 10px
 }
 
 .thumbnail {
@@ -78,6 +79,7 @@ form {
   font-weight: bold;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
   text-transform: uppercase;
+  padding: 2px;
 }
 
 .jumbotron {
@@ -87,6 +89,11 @@ form {
   background: #CE1D25;
   text-align: center;
   color: white;
+  margin-bottom: 20px;
+}
+
+#jumbo-heading {
+  margin-top: 10px;
 }
 
 #search-form:focus {
@@ -118,4 +125,21 @@ form {
 .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>.active>a {
   color: #CE1D25;
   font-weight: 500;
+}
+
+.section-scroll, .section-scroll-idea {
+  float: right;
+  border: 1px solid #b7c4c7;
+  border-radius: 5px;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #889293;
+  span {
+    padding-left: 3px;
+    padding-right: 3px;
+    &:hover {
+    color: #494949;
+    }
+  }
 }
