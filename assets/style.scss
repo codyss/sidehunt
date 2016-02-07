@@ -133,8 +133,8 @@ form {
 
 .user-pic {
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   padding: 0px;
   margin-left: 10px;
   img {
@@ -163,6 +163,15 @@ form {
     color: #494949;
     }
   }
+}
+
+.popOverBox img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .scroll-heading {

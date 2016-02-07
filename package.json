@@ -18,7 +18,8 @@
     "request": "^2.69.0",
     "serve-favicon": "^2.3.0",
     "socket.io": "^1.4.4",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "webshot": "^0.17.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

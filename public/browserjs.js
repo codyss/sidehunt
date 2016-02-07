@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-  
 
   $('.thumbnail').on('click', '.upVoteButton', function () {
     $votes = $(this);
@@ -43,13 +42,26 @@ $(document).ready(function () {
         $.get('https://api.github.com/users/' + userName, function(data) {
           console.log('github image fetched');
           $img.attr('src', data.avatar_url);
-          $.post('/saveavatar', {url: data.avatar_url, title: $button.data('title')}, function (res) {
+          $.post('/saveavatar', {url: data.avatar_url, title: $button.data('title'), userName: data.name}, function (res) {
             console.log('img should be saved for ' + $button.data('title') + ': ' + data.avatar_url);
           })
         })
 
       }
     });
+
+    // $( ".user-pic" ).tooltip( "enable" );
+    
+    
+    $('[data-toggle="popover"]').popover({
+      'trigger':'hover',
+      'html':true
+      // 'content':function(){
+      //   return "<img src='"+$(this).data('imgPath')+"'>";  
+      // }
+    })    
+
+
 
     // $('.user-pic > img').popover('show')
 

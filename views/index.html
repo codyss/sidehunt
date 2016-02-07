@@ -11,7 +11,6 @@
       <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
     </div>
 
-
     <div class="scroll-heading">
       <span class='section-name'>Projects</span>
       <span class="section-scroll">
@@ -24,17 +23,19 @@
      <div class="row">
   {% for project in projects %}
     <!-- <div class=""> -->
-      <div class="thumbnail"> <!-- GIVE THIS  A MAX SIZE -->
-        <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
+      <div class="thumbnail"> <!-- GIVE THIS  A MAX SIZE /github-octocat.png" /webimg/{{project.urlTitle}}_img.png -->
+        <img id="project_img" class="img-responsive" src="/github-octocat.png">
         <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
           <text id="thumb-project-name">{{project.title}}</text><br>
-          <text id="thumb-project-user">By {{project.user.firstName}} {{project.user.lastName}}</text>
+          <text id="thumb-project-user">By {{project.githubName}}</text>
           <p>{{project.description}}</p>
           <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a> 
           <a class="btn btn-default upVoteButton" data-type="project" data-name="{{project.title}}">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
-          <a class="btn btn-primary user-pic" data-user="{{project.githubName}}" data-title="{{project.title}}"role="button"><img src="{{project.imgPath}}"></a></p>
+          <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="hover" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
         </div>
       </div>
+
+      <!-- <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a> -->
     <!-- </div> -->
   {% endfor %}
       </div>

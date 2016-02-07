@@ -5,6 +5,7 @@ var bootstrapRouter = require('bootstrap-router');
 var _ = require('lodash');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
+var webshot = require('webshot');
 
 var models = require('../models/');
 
@@ -83,7 +84,16 @@ router.post('/add', function (req, res, next) {
   Project.create(req.body).then(function(project) {
     res.redirect('/');
     return project;
-  }).then(function (project) {
+  })
+  .then(function(project) {
+    webUrl = req.body.website;
+    webshot(webUrl, '../public/webimg/' + project.urlTitle + '_img.png', function(err) {
+      // screenshot now saved to (title)_img.png in public/webimg/ folder
+      console.error(err);
+    });
+    return project;
+  })
+  .then(function (project) {
     var options = {
       url: project.githubData,
       headers: {
@@ -93,7 +103,7 @@ router.post('/add', function (req, res, next) {
     request(options, function (err, res, body) {
       if (!err) {
         var data = JSON.parse(body)
-        Project.findOneAndUpdate({title: project.title}, {imgPath: data.avatar_url})
+        Project.findOneAndUpdate({title: project.title}, {imgPath: data.avatar_url, userName: data.name})
         .then(null, function(err) {
           console.log(err);
         })
@@ -110,9 +120,7 @@ router.post('/addidea', function (req, res, next) {
 })
 
 router.post('/saveavatar', function (req, res, next) {
-  var url = req.body.url;
-  var title = req.body.title;
-  Project.findOneAndUpdate({title: title}, {imgPath: url}).then(function () {
+  Project.findOneAndUpdate({title: req.body.title}, {imgPath: req.body.url, userName: req.body.userName}).then(function () {
     res.json({});
   })
 })
