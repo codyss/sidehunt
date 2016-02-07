@@ -26,20 +26,30 @@ $(document).ready(function () {
     });
 
      $('.section-scroll-idea span:nth-child(2)').on('click', function() {
-      $('.side-list-project').animate({ scrollLeft: '+=855' }, 1000);
+      $('.side-list-idea').animate({ scrollLeft: '+=855' }, 1000);
     });
     $('.section-scroll-idea span:nth-child(1)').on('click', function() {
-      $('.side-list-project').animate({ scrollLeft: '-=855' }, 1000);
+      $('.side-list-idea').animate({ scrollLeft: '-=855' }, 1000);
     });
 
     //to be adjusted to be dynamic
-    $.get('https://api.github.com/users/codyss', function(data) {
-      $('#user-pic > img').attr('src', data.avatar_url);
-      console.log(data.avatar_url);
-    });
+
 
     // Find the right repo github name to then do a get request on the image, do it on each image
     // potential to save the link to the repo in a data attribute for the button
 
 });
+
+$('.user-pic').each(function() {
+  var $img = $(this).find('img');
+  var userName = $(this).data('user');
+  $.get('https://api.github.com/users/' + userName, function(data) {
+    $img.attr('src', data.avatar_url);  
+  })
+});
+
+// $.get('https://api.github.com/users/codyss', function(data) {
+//   $('#user-pic > img').attr('src', data.avatar_url);
+//   console.log(data.avatar_url);
+// });
 

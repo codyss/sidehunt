@@ -6,13 +6,15 @@ var projectSchema = new Schema({
   title: String,
   urlTitle: String,
   githubName: String,
+  githubData: Schema.Types.Mixed,
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   repo: String,
   website: String,
   description: String,
   tags: [String],
   imgPath: String,
-  upVotes: {type: Number, default: 0}
+  upVotes: {type: Number, default: 0},
+  upVoters: [String]
 });
 
 projectSchema.pre('validate', function(next) {
@@ -22,6 +24,11 @@ projectSchema.pre('validate', function(next) {
 
 projectSchema.pre('save', function(next) {
   this.githubName = nameFromRepo(this.repo);
+  next();
+})
+
+projectSchema.pre('save', function(next) {
+  this.githubData = "https://api.github.com/users/" + this.githubName;
   next();
 })
 

@@ -74,6 +74,7 @@ router.post('/upvote/:type', function(req, res, next) {
   .then(function(project) {
     res.json({upVotes: project.upVotes});
   })
+  //Can add the IP address of the vote so that it can't vote again
 })
 
 
