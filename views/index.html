@@ -12,26 +12,27 @@
     </div>
 
 
-    <span class='section-name'>Projects</span>
-
-    <span class="section-scroll">
-    <span class='glyphicon glyphicon-triangle-left'></span>
-    <span class='glyphicon glyphicon-triangle-right'></span>
-    </span>
-  
+    <div class="scroll-heading">
+      <span class='section-name'>Projects</span>
+      <span class="section-scroll">
+      <span class='glyphicon glyphicon-triangle-left'></span>
+      <span class='glyphicon glyphicon-triangle-right'></span>
+      </span>
+    </div>
     
     <div class="side-list-project">
      <div class="row">
   {% for project in projects %}
     <!-- <div class=""> -->
       <div class="thumbnail"> <!-- GIVE THIS  A MAX SIZE -->
-        <img id="project_img" class="img-responsive" src="/placeholder.jpg" alt="...">
+        <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
         <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
           <text id="thumb-project-name">{{project.title}}</text><br>
           <text id="thumb-project-user">By {{project.user.firstName}} {{project.user.lastName}}</text>
           <p>{{project.description}}</p>
           <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a> 
-          <a class="btn btn-default upVoteButton" data-type="project" data-name="{{project.title}}">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
+          <a class="btn btn-default upVoteButton" data-type="project" data-name="{{project.title}}">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
+          <a href="{{project.githubName}}" class="btn btn-primary" id="user-pic" data-user="{{project.githubName}}" role="button"><img src="" alt="..."></a></p>
         </div>
       </div>
     <!-- </div> -->
@@ -39,29 +40,35 @@
       </div>
     </div>
 
-<span class='section-name'>Ideas</span>
+<div class="scroll-heading">
+  <span class='section-name'>Ideas</span>
   <span class="section-scroll-idea">
     <span class='glyphicon glyphicon-triangle-left'></span>
     <span class='glyphicon glyphicon-triangle-right'></span>
   </span> 
+</div>
 
 <div class="side-list-idea">
 <div class="row">
 {% for idea in ideas %}
   <!-- <div class="col-sm-6 col-lg-3"> -->
     <div class="thumbnail">
-      <img id="project_img" class="img-responsive" src="/placeholder.jpg" alt="...">
+      <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
       <div class="caption">
-        <text id="thumb-project-name">{{idea.title}}</text>
+        <text id="thumb-project-name">{{idea.title}}</text><br>
         <text id="thumb-project-user">By {{idea.user.firstName}} {{idea.user.lastName}}</text>
         <p>{{idea.description}}</p>
         <p><a href="{{project.route}}" class="btn btn-primary details-button" role="button">Details</a> 
-        <a class="btn btn-default upVoteButton" data-type="idea" data-name="{{idea.title}}">{{idea.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a></p>
+        <a class="btn btn-default upVoteButton" data-type="idea" data-name="{{idea.title}}">{{idea.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
+       <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
       </div>
     </div>
   <!-- </div> -->
 {% endfor %}
 </div>
+</div>
+<div>
+
 </div>
 </div>
 </div>  

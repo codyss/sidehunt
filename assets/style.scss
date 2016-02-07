@@ -13,8 +13,9 @@ body {
 }
 
 #project_img {
-  width: 90%;
+  width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 #thumb-project-name {
@@ -43,9 +44,9 @@ body {
 .side-list-idea, .side-list-project {
   overflow-x: auto;
   overflow-y: hidden;
-  height: 400px;
+  height: 320px;
   margin-bottom: 20px;
-  padding-left: 10px
+  padding-left: 10px;
 }
 
 .thumbnail {
@@ -79,7 +80,7 @@ form {
   font-weight: bold;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
   text-transform: uppercase;
-  padding: 2px;
+  padding: 2px 2px 0px 2px;
 }
 
 .jumbotron {
@@ -94,6 +95,7 @@ form {
 
 #jumbo-heading {
   margin-top: 10px;
+  color: white;
 }
 
 #search-form:focus {
@@ -116,10 +118,25 @@ form {
   }
 }
 
-
-.details-button {
+.btn-primary {
   background-color: #CE1D25;
   border-color: #CE1D25;
+  &:hover {
+    background-color: #ab181e;
+    border-color: #ab181e;
+  };
+}
+
+#user-pic {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  margin-left: 10px;
+  img {
+    background-color: white;
+    border-radius: 50%
+  }
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>.active>a {
@@ -142,4 +159,8 @@ form {
     color: #494949;
     }
   }
+}
+
+.scroll-heading {
+  margin-bottom: 5px;
 }

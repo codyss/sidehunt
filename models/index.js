@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var projectSchema = new Schema({
   title: String,
   urlTitle: String,
+  githubName: String,
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   repo: String,
   website: String,
@@ -19,18 +20,25 @@ projectSchema.pre('validate', function(next) {
   next();
 });
 
+projectSchema.pre('save', function(next) {
+  this.githubName = nameFromRepo(this.repo);
+  next();
+})
+
+
 projectSchema.virtual('route').get(function() {
   return '/projects/' + this.urlTitle;
 });
 
-
 var userSchema = new Schema({
-  firstName: String,
-  lastName: String,
   githubName: String,
   projects: [{type: Schema.Types.ObjectId, ref: 'Project'}],
   ideas: [{type: Schema.Types.ObjectId, ref: 'Idea'}]
 });
+
+userSchema.virtual('githubAPI').get(function() {
+  return 'https://api.github.com/users/' + this.githubName;
+})
 
 var ideaSchema = new Schema({
   user: {type: Schema.Types.ObjectId, ref: 'User'},
@@ -65,6 +73,11 @@ module.exports = {
 
 function urlify (str){
     return str ? str.replace(/\s/g, "_").replace(/\W/g, ""): Math.random().toString(36).substring(2, 7);
+}
+
+function nameFromRepo (address) {
+  var adArr = address.split('/');
+  return adArr.slice(-2,-1);
 }
 
 function arrayify (tags) {

@@ -18,21 +18,28 @@ $(document).ready(function () {
   // });
   
     $('.section-scroll span:nth-child(2)').on('click', function() {
-      console.log('clicked');
-      $('.side-list-project').scrollLeft(855);    
+      $('.side-list-project').animate({ scrollLeft: '+=855' }, 1000);
+      // $('.side-list-project').scrollLeft(855);    
     });
     $('.section-scroll span:nth-child(1)').on('click', function() {
-      console.log('clicked');
-      $('.side-list-project').scrollLeft(-855);    
+      $('.side-list-project').animate({ scrollLeft: '-=855' }, 1000);
     });
 
      $('.section-scroll-idea span:nth-child(2)').on('click', function() {
-      console.log('clicked');
-      $('.side-list-project').scrollLeft(855);    
+      $('.side-list-project').animate({ scrollLeft: '+=855' }, 1000);
     });
     $('.section-scroll-idea span:nth-child(1)').on('click', function() {
-      console.log('clicked');
-      $('.side-list-project').scrollLeft(-855);    
+      $('.side-list-project').animate({ scrollLeft: '-=855' }, 1000);
     });
+
+    //to be adjusted to be dynamic
+    $.get('https://api.github.com/users/codyss', function(data) {
+      $('#user-pic > img').attr('src', data.avatar_url);
+      console.log(data.avatar_url);
+    });
+
+    // Find the right repo github name to then do a get request on the image, do it on each image
+    // potential to save the link to the repo in a data attribute for the button
+
 });
 
