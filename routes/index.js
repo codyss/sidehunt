@@ -87,10 +87,12 @@ router.post('/add', function (req, res, next) {
   })
   .then(function(project) {
     webUrl = req.body.website;
-    webshot(webUrl, '../public/webimg/' + project.urlTitle + '_img.png', function(err) {
-      // screenshot now saved to (title)_img.png in public/webimg/ folder
-      console.error(err);
-    });
+    if (webUrl.length > 3) {
+      webshot(webUrl, '../public/webimg/' + project.urlTitle + '_img.png', function(err) {
+        // screenshot now saved to (title)_img.png in public/webimg/ folder
+        console.error(err);
+      });
+    }
     return project;
   })
   .then(function (project) {
@@ -102,7 +104,10 @@ router.post('/add', function (req, res, next) {
     };
     request(options, function (err, res, body) {
       if (!err) {
-        var data = JSON.parse(body)
+        var data = JSON.parse(body);
+        if (!data.name) {
+          data.name = data.login;
+        }
         Project.findOneAndUpdate({title: project.title}, {imgPath: data.avatar_url, userName: data.name})
         .then(null, function(err) {
           console.log(err);

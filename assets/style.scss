@@ -19,12 +19,12 @@ body {
 }
 
 #thumb-project-name {
-  font-weigth: bold;
+  font-weight: bold;
   font-size: 18px;
 }
 
 #thumb-project-user {
-  font-weight: bold; 
+  
   font-size: 16px; 
 }
 
@@ -108,10 +108,10 @@ form {
 }
 
 .upVoteButtonOff {
-  border: 2px solid #4e53ff;
-  color: blue;
+  border: 1px solid #4e53ff;
+  color: #4e53ff;
   &:hover {
-  border: 2px solid #4e53ff;
+  border: 1px solid #4e53ff;
   }
   .glyphicon {
   color: #4e53ff;  

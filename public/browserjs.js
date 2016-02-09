@@ -34,34 +34,44 @@ $(document).ready(function () {
     //to be adjusted to be dynamic based on page width - scroll the right amount
 
     $('.user-pic').each(function() {
-      var $button = $(this)
+      var $button = $(this);
       var $img = $button.find('img');
       var userName = $button.data('user');
-      if (userName.length > 3 && $img.attr('src') < 3) {
-        console.log($img.attr('src'));
+      if (userName.length > 3 && ($img.attr('src') < 3 || checkDataContentEmpty($button))) {
         $.get('https://api.github.com/users/' + userName, function(data) {
           console.log('github image fetched');
           $img.attr('src', data.avatar_url);
-          $.post('/saveavatar', {url: data.avatar_url, title: $button.data('title'), userName: data.name}, function (res) {
-            console.log('img should be saved for ' + $button.data('title') + ': ' + data.avatar_url);
+          var toPost = "<div class='popOverBox'><img src='"+ data.avatar_url + "' /></div>"
+          console.log(toPost);
+          console.log($button);
+          var buttonData = $button.data();
+          buttonData.content = toPost;
+          $.post('/saveavatar', {url: data.avatar_url, title: $button.attr('title'), userName: data.name}, function (res) {
+            console.log('img should be saved for ' + $button.attr('title') + ': ' + data.avatar_url);
           })
         })
-
       }
     });
 
     // $( ".user-pic" ).tooltip( "enable" );
     
-    
-    $('[data-toggle="popover"]').popover({
+      
+    $('.user-pic').popover({
       'trigger':'hover',
-      'html':true
-      // 'content':function(){
-      //   return "<img src='"+$(this).data('imgPath')+"'>";  
-      // }
-    })    
+      'html':true,
+      'delay': { "show": 100, "hide": 400 }
+    });    
 
 
+    function checkDataContentEmpty (button) {
+      var content = button.data('content')
+      content.split('src=');
+      if(content[1].slice(2,1) === ' ') {
+        return true; 
+      } else {
+        return false;
+      }
+    }
 
     // $('.user-pic > img').popover('show')
 

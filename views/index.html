@@ -27,11 +27,11 @@
         <img id="project_img" class="img-responsive" src="/github-octocat.png">
         <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
           <text id="thumb-project-name">{{project.title}}</text><br>
-          <text id="thumb-project-user">By {{project.githubName}}</text>
+          <text id="thumb-project-user">By {{project.userName}}</text>
           <p>{{project.description}}</p>
           <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a> 
           <a class="btn btn-default upVoteButton" data-type="project" data-name="{{project.title}}">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
-          <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="hover" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
+          <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
         </div>
       </div>
 
