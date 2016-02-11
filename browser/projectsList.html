@@ -1,3 +1,8 @@
+    <div class="jumbotron jumbo-header">
+      <h1 id='jumbo-heading'>1601 Side Hunt</h1>
+      <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
+    </div>
+
     <div class="scroll-heading">
       <span class='section-name'>Projects</span>
       <span class="section-scroll">
@@ -19,5 +24,35 @@
           <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a> 
           <button class="btn btn-default upVoteButton" ng-click="add(project,'Project')" data-type="project" data-name="{{project.title}}">{{project.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button>
           <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
+        </div>
+      </div>
+      </div>
+      </div>
+
+
+
+      <div class="scroll-heading">
+        <span class='section-name'>Ideas</span>
+        <span class="section-scroll-idea">
+          <span class='glyphicon glyphicon-triangle-left'></span>
+          <span class='glyphicon glyphicon-triangle-right'></span>
+        </span> 
+      </div>
+
+      <div class="side-list-idea">
+        <div class="row">
+          <!-- <div class="col-sm-6 col-lg-3"> -->
+            <div class="thumbnail" ng-repeat="idea in ideas">
+              <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
+              <div class="caption">
+                <text id="thumb-project-name">{{idea.title}}</text><br>
+                <text id="thumb-project-user">By {{idea.user.firstName}} {{idea.user.lastName}}</text>
+                <p>{{idea.description}}</p>
+                <p><a href="{{project.route}}" class="btn btn-primary details-button" role="button">Details</a> 
+                <a class="btn btn-default upVoteButton" data-type="idea" data-name="{{idea.title}}">{{idea.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
+               <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
+              </div>
+            </div>
+          <!-- </div> -->
         </div>
       </div>

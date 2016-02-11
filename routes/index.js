@@ -15,28 +15,6 @@ var Idea = require('../models').Idea;
 var Project = require('../models').Project;
 
 
-router.get('/', function(req, res, next ){
-  //Make side hunt the first project all the time
-  // Promise.all([
-  //    Project.find({}).populate('user'),
-  //    Idea.find({}).populate('user')
-  //   ])
-  // .spread(function (projects, ideas) {
-  //     projects.sort(function (a, b) {
-  //       return a.upVotes - b.upVotes;
-  //     });
-  //     projects.reverse();
-  //     ideas.sort(function (a, b) {
-  //       return a.upVotes - b.upVotes;
-  //     });
-  //     ideas.reverse();
-      res.sendFile(path.join(__dirname, '../views/index.html'));
-    // })
-  //   .then(null, function (err) {
-  //   console.log(err);
-  // });
-});
-
 router.get('/api', function(req, res, next ){
   //Make side hunt the first project all the time
   Promise.all([
@@ -61,6 +39,31 @@ router.get('/api', function(req, res, next ){
     console.log(err);
   });
 });
+
+
+router.get('/', function(req, res, next ){
+  //Make side hunt the first project all the time
+  // Promise.all([
+  //    Project.find({}).populate('user'),
+  //    Idea.find({}).populate('user')
+  //   ])
+  // .spread(function (projects, ideas) {
+  //     projects.sort(function (a, b) {
+  //       return a.upVotes - b.upVotes;
+  //     });
+  //     projects.reverse();
+  //     ideas.sort(function (a, b) {
+  //       return a.upVotes - b.upVotes;
+  //     });
+  //     ideas.reverse();
+      res.sendFile(path.join(__dirname, '../views/index.html'));
+      res.redirect('/#/')
+    // })
+  //   .then(null, function (err) {
+  //   console.log(err);
+  // });
+});
+
 
 
 router.get('/projects/:title', function (req, res, next) {

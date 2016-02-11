@@ -7,6 +7,7 @@
      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
      <script src="/angular-ui-router/release/angular-ui-router.min.js"></script>
      <script src="/js/ang.js"></script>
+     <script src="/js/factory/main.factory.js"></script>
 
   </head>
   <body >
@@ -28,10 +29,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li id="home-nav"><a href="/">Home<span class="sr-only"></span></a></li>
-        <li id="project-nav"><a href="/add">Add Project</a></li>
-        <li id="idea-nav"><a href="/addidea">Add Idea</a></li>
-        <li id="idea-nav"><a href="/#/test">Test</a></li>
+        <li id="home-nav"><a href="/#/home">Home<span class="sr-only"></span></a></li>
+        <li id="project-nav"><a href="/#/add">Add Project</a></li>
+        <li id="idea-nav"><a href="/#/addidea">Add Idea</a></li>
         <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -57,44 +57,9 @@
 
 
 <div class="container" class='main-body' ng-app ='sidehunt'>
+  
+  <ui-view></ui-view>
 
-    <div class="jumbotron jumbo-header">
-      <h1 id='jumbo-heading'>1601 Side Hunt</h1>
-      <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
-    </div>
-
-
-    
-<div ui-view></div>
-
-<div class="scroll-heading">
-  <span class='section-name'>Ideas</span>
-  <span class="section-scroll-idea">
-    <span class='glyphicon glyphicon-triangle-left'></span>
-    <span class='glyphicon glyphicon-triangle-right'></span>
-  </span> 
-</div>
-
-<div class="side-list-idea">
-<div class="row">
-  <!-- <div class="col-sm-6 col-lg-3"> -->
-    <div class="thumbnail" ng-repeat="idea in ideas">
-      <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
-      <div class="caption">
-        <text id="thumb-project-name">{{idea.title}}</text><br>
-        <text id="thumb-project-user">By {{idea.user.firstName}} {{idea.user.lastName}}</text>
-        <p>{{idea.description}}</p>
-        <p><a href="{{project.route}}" class="btn btn-primary details-button" role="button">Details</a> 
-        <a class="btn btn-default upVoteButton" data-type="idea" data-name="{{idea.title}}">{{idea.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
-       <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
-      </div>
-    </div>
-  <!-- </div> -->
-</div>
-</div>
-<div>
-
-</div>
 </div>  
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

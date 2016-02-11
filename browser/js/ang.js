@@ -1,34 +1,44 @@
 var app = angular.module('sidehunt', ['ui.router']);
 
-  app.config(function($stateProvider) {
-    $stateProvider.state('projects', {
-      url: '/app',
-      templateUrl: '/projectsList.html',
-      controller: 'sidehuntC'
-    })
+app.config(function($urlRouterProvider) {
+  $urlRouterProvider.when('', '/index')
+})
+
+app.config(function($stateProvider) {
+  $stateProvider.state('index', {
+    url: '/index',
+    templateUrl: '/projectsList.html',
+    controller: 'main'
+  })
+});
+
+
+app.config(function($stateProvider) {
+  $stateProvider.state('addProject', {
+    url: '/add',
+    templateUrl: '',
+    controller: 'addProject'
+  })
+})
+
+
+app.controller('main', function ($scope, MainFactory) {
+
+  MainFactory.getData()
+  .then(data=> {
+    $scope.projects = data.projects;
+    $scope.ideas = data.ideas;
   });
-
-
-app.controller('sidehuntC', function ($scope, $http, $log) {
-  $http.get('/api').then(function(obj) {
-    $scope.projects = obj.data.projects;
-    $scope.ideas = obj.data.ideas;
-    console.log.bind(console, obj.data);
-  }).catch(console.error.bind(console));
-
   
-  $scope.add = function (projectObj, type) {
-    $log.log('clicked');
-    $http.post('/upvote/'+ type, {id: projectObj._id})
-    .then(function (res) {
-      projectObj.upVotes = res.data.upVotes;
-    })
-  }
-
-
-
+  $scope.add = MainFactory.add
 
 })
+
+app.controller('addProject', function ($scope) {
+
+})
+
+
 
 
 
