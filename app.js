@@ -17,18 +17,21 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var _ = require('lodash');
 
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
-swig.setDefaults({cache: false});
+// app.engine('html', swig.renderFile);
+// var indexPath = path.join(__dirname, '.views/index.html')
+// app.setValue('index', indexPath)
+
+// app.set('view engine', 'html');
+// app.set('views', __dirname + '/views');
+// swig.setDefaults({cache: false});
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 
-swig.setFilter('dateFormatter', function(date){
-  return date.toLocaleString('en-US');
-});
+// swig.setFilter('dateFormatter', function(date){
+//   return date.toLocaleString('en-US');
+// });
 
 app.use(morgan('dev'));
 
@@ -41,6 +44,8 @@ app.use(sass({
     prefix:  '/prefix'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/> 
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'browser')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', routes);
 

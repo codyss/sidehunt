@@ -6,7 +6,7 @@ var _ = require('lodash');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
 var webshot = require('webshot');
-
+var path = require('path');
 var models = require('../models/');
 
 
@@ -15,10 +15,29 @@ var Idea = require('../models').Idea;
 var Project = require('../models').Project;
 
 
-//lodash random for getting a random chat ID
-
-
 router.get('/', function(req, res, next ){
+  //Make side hunt the first project all the time
+  // Promise.all([
+  //    Project.find({}).populate('user'),
+  //    Idea.find({}).populate('user')
+  //   ])
+  // .spread(function (projects, ideas) {
+  //     projects.sort(function (a, b) {
+  //       return a.upVotes - b.upVotes;
+  //     });
+  //     projects.reverse();
+  //     ideas.sort(function (a, b) {
+  //       return a.upVotes - b.upVotes;
+  //     });
+  //     ideas.reverse();
+      res.sendFile(path.join(__dirname, '../views/index.html'));
+    // })
+  //   .then(null, function (err) {
+  //   console.log(err);
+  // });
+});
+
+router.get('/api', function(req, res, next ){
   //Make side hunt the first project all the time
   Promise.all([
      Project.find({}).populate('user'),
@@ -33,9 +52,9 @@ router.get('/', function(req, res, next ){
         return a.upVotes - b.upVotes;
       });
       ideas.reverse();
-      res.render("index", {
-      projects: projects,
-      ideas: ideas
+        res.json({
+        projects: projects,
+        ideas: ideas
       });
     })
     .then(null, function (err) {
@@ -61,7 +80,7 @@ router.get('/ideas/:name', function (req, res, next) {
 });
 
 router.get('/add', function(req, res, next ){
-    res.render("addproject");
+    res.sendFile(path.join(__dirname, '../views/addproject.html'));
 });
 
 router.get('/addidea', function(req, res, next ){
@@ -70,9 +89,8 @@ router.get('/addidea', function(req, res, next ){
 
 router.post('/upvote/:type', function(req, res, next) {
   var type = req.params.type; //collection to add to
-  type = type.slice(0,1).toUpperCase() + type.slice(1);
   var data = req.body;
-  mongoose.model(type).findOneAndUpdate({title: data.title}, {$inc: {upVotes: 1}} , {new: true})
+  mongoose.model(type).findByIdAndUpdate(data.id, {$inc: {upVotes: 1}} , {new: true})
   .then(function(project) {
     res.json({upVotes: project.upVotes});
   })
@@ -85,16 +103,16 @@ router.post('/add', function (req, res, next) {
     res.redirect('/');
     return project;
   })
-  .then(function(project) {
-    webUrl = req.body.website;
-    if (webUrl.length > 3) {
-      webshot(webUrl, '../public/webimg/' + project.urlTitle + '_img.png', function(err) {
-        // screenshot now saved to (title)_img.png in public/webimg/ folder
-        console.error(err);
-      });
-    }
-    return project;
-  })
+  // .then(function(project) {
+  //   webUrl = req.body.website;
+  //   if (webUrl.length > 3) {
+  //     webshot(webUrl, '../public/webimg/' + project.urlTitle + '_img.png', function(err) {
+  //       // screenshot now saved to (title)_img.png in public/webimg/ folder
+  //       console.error(err);
+  //     });
+  //   }
+  //   return project;
+  // })
   .then(function (project) {
     var options = {
       url: project.githubData,

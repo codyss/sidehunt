@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+     <link rel="stylesheet" href="/style.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+     <script src="/angular-ui-router/release/angular-ui-router.min.js"></script>
+     <script src="/js/ang.js"></script>
+
+  </head>
+  <body >
+
+  <!-- Nav Bar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li id="home-nav"><a href="/">Home<span class="sr-only"></span></a></li>
+        <li id="project-nav"><a href="/add">Add Project</a></li>
+        <li id="idea-nav"><a href="/addidea">Add Idea</a></li>
+        <li id="idea-nav"><a href="/#/test">Test</a></li>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li> -->
+      </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" id="search-form" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container" class='main-body' ng-app ='sidehunt'>
+
+    <div class="jumbotron jumbo-header">
+      <h1 id='jumbo-heading'>1601 Side Hunt</h1>
+      <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
+    </div>
+
+
+    
+<div ui-view></div>
+
+<div class="scroll-heading">
+  <span class='section-name'>Ideas</span>
+  <span class="section-scroll-idea">
+    <span class='glyphicon glyphicon-triangle-left'></span>
+    <span class='glyphicon glyphicon-triangle-right'></span>
+  </span> 
+</div>
+
+<div class="side-list-idea">
+<div class="row">
+  <!-- <div class="col-sm-6 col-lg-3"> -->
+    <div class="thumbnail" ng-repeat="idea in ideas">
+      <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
+      <div class="caption">
+        <text id="thumb-project-name">{{idea.title}}</text><br>
+        <text id="thumb-project-user">By {{idea.user.firstName}} {{idea.user.lastName}}</text>
+        <p>{{idea.description}}</p>
+        <p><a href="{{project.route}}" class="btn btn-primary details-button" role="button">Details</a> 
+        <a class="btn btn-default upVoteButton" data-type="idea" data-name="{{idea.title}}">{{idea.upVotes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></a>
+       <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
+      </div>
+    </div>
+  <!-- </div> -->
+</div>
+</div>
+<div>
+
+</div>
+</div>  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="/js/browserjs.js"></script>
+   <script>$(function() {
+    $('#home-nav').toggleClass('active')
+  })
+  </script>
+  </body>
+</html> 
