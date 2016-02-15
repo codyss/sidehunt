@@ -51,6 +51,7 @@ userSchema.virtual('githubAPI').get(function() {
 
 var ideaSchema = new Schema({
   githubName: String,
+  userName: String,
   imgPath: String,
   websiteImg: String,
   title: String,

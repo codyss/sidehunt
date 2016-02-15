@@ -112,7 +112,24 @@ router.post('/add', function (req, res, next) {
 
 router.post('/api/addidea', function (req, res, next) {
   Idea.create(req.body).then(function(idea) {
-    res.json({idea});
+    var options = {
+      url: 'https://api.github.com/users/' + idea.githubName,
+      headers: {
+        'User-Agent': 'sidelist'
+      }
+    };
+    request(options, function (err, res, body) {
+      if(!err) {
+        var data = JSON.parse(body);
+        if (!data.name) {
+          data.name = data.login;
+        }
+        Idea.findOneAndUpdate({title:idea.title}, {imgPath: data.avatar_url, userName: data.name})
+        .then(null, function (err) {
+          console.log(err);
+        })
+      }
+    })
   })
 })
 
