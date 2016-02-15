@@ -9,13 +9,36 @@ app.factory('MainFactory', function($http) {
   }
 
 
-  MainFactory.add = function (projectObj, type) {
+  MainFactory.upVote = function (projectObj, type) {
+    console.log(projectObj);
     $http.post('/upvote/'+ type, {id: projectObj._id})
     .then(function (res) {
       projectObj.upVotes = res.data.upVotes;
     })
   }
 
+  MainFactory.scrollRightProject = function () {
+    $('.side-list-project').animate({ scrollLeft: '+=855' }, 1000);
+  }
+
+  MainFactory.scrollRightIdea = function () {
+    $('.side-list-idea').animate({ scrollLeft: '+=855' }, 1000);
+  }
+
+  MainFactory.scrollLeftProject = function () {
+    $('.side-list-project').animate({ scrollLeft: '-=855' }, 1000);
+  }
+
+  MainFactory.scrollLeftIdea = function () {
+    $('.side-list-idea').animate({ scrollLeft: '-=855' }, 1000);;
+  }
+
   return MainFactory;
 
+
+
+
 })
+
+
+

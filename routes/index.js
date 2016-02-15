@@ -41,29 +41,9 @@ router.get('/api', function(req, res, next ){
 });
 
 
-router.get('/', function(req, res, next ){
-  //Make side hunt the first project all the time
-  // Promise.all([
-  //    Project.find({}).populate('user'),
-  //    Idea.find({}).populate('user')
-  //   ])
-  // .spread(function (projects, ideas) {
-  //     projects.sort(function (a, b) {
-  //       return a.upVotes - b.upVotes;
-  //     });
-  //     projects.reverse();
-  //     ideas.sort(function (a, b) {
-  //       return a.upVotes - b.upVotes;
-  //     });
-  //     ideas.reverse();
-      res.sendFile(path.join(__dirname, '../views/index.html'));
-      res.redirect('/#/')
-    // })
-  //   .then(null, function (err) {
-  //   console.log(err);
-  // });
+router.get('/*', function(req, res, next ){
+  res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
-
 
 
 router.get('/projects/:title', function (req, res, next) {
@@ -106,16 +86,6 @@ router.post('/add', function (req, res, next) {
     res.redirect('/');
     return project;
   })
-  // .then(function(project) {
-  //   webUrl = req.body.website;
-  //   if (webUrl.length > 3) {
-  //     webshot(webUrl, '../public/webimg/' + project.urlTitle + '_img.png', function(err) {
-  //       // screenshot now saved to (title)_img.png in public/webimg/ folder
-  //       console.error(err);
-  //     });
-  //   }
-  //   return project;
-  // })
   .then(function (project) {
     var options = {
       url: project.githubData,
@@ -139,9 +109,10 @@ router.post('/add', function (req, res, next) {
 })
 
 
-router.post('/addidea', function (req, res, next) {
+
+router.post('/api/addidea', function (req, res, next) {
   Idea.create(req.body).then(function(idea) {
-    res.redirect('/');
+    res.json({idea});
   })
 })
 

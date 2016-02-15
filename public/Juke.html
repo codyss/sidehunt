@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://localhost:1337/?#/playlists/56bd04153defab672356f290 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <title>Juke</title>
+    <link href="./Juke_files/bootstrap.css" rel="stylesheet">
+    <link href="./Juke_files/bootstrap-dark.css" rel="stylesheet">
+    <link href="./Juke_files/style.css" rel="stylesheet">
+    <script src="./Juke_files/angular.js" defer=""></script>
+    <script src="./Juke_files/angular-ui-router.js" defer=""></script>
+    <script src="./Juke_files/module.js" defer=""></script>
+    <script src="./Juke_files/album.controllers.js" defer=""></script>
+    <script src="./Juke_files/album.factory.js" defer=""></script>
+    <script src="./Juke_files/album.states.js" defer=""></script>
+    <script src="./Juke_files/playlist.states.js" defer=""></script>
+    <script src="./Juke_files/playlist.controller.js" defer=""></script>
+    <script src="./Juke_files/playlist.factory.js" defer=""></script>
+    <script src="./Juke_files/player.controller.js" defer=""></script>
+    <script src="./Juke_files/player.factory.js" defer=""></script>
+    <script src="./Juke_files/sidebar.controller.js" defer=""></script>
+    <script src="./Juke_files/artist.controllers.js" defer=""></script>
+    <script src="./Juke_files/artist.factory.js" defer=""></script>
+    <script src="./Juke_files/artist.states.js" defer=""></script>
+    <script src="./Juke_files/song.factory.js" defer=""></script>
+  <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+  <body ng-app="juke" class="ng-scope">
+    <div id="main" class="container-fluid">
+
+      <div class="col-xs-2">
+        <sidebar ng-controller="SidebarCtrl" class="ng-scope">
+          <img src="./Juke_files/juke.svg" class="logo">
+          <section>
+            <h4 ui-sref-active="active" class="playlist-item">
+              <a ui-sref="albums" href="http://localhost:1337/?#/albums">ALBUMS</a>
+            </h4>
+          </section>
+          <section>
+            <h4 ui-sref-active="active" class="playlist-item">
+              <a ui-sref="artists" href="http://localhost:1337/?#/artists">ARTISTS</a>
+            </h4>
+          </section>
+          <hr>
+          <section ng-controller="PlaylistCtrl" class="ng-scope">
+            <h4 class="text-muted">PLAYLISTS</h4>
+            <p>
+              <a class="btn btn-primary btn-block" ui-sref="newplaylist" href="http://localhost:1337/?#/playlists/new"><span class="glyphicon glyphicon-plus"></span> PLAYLIST</a>
+            </p>
+            <!-- ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd03dd3defab672356f28e">testsetsetset</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd04883defab672356f291">test 25</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd03c33defab672356f28c">test 10</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd03fe3defab672356f28f">test 20</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd151dc1f4103c44166e9a">tesetste</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd1520c1f4103c44166e9b">tests</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd1523c1f4103c44166e9c">teststseet</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd1526c1f4103c44166e9d">testestse</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists --><section class="ng-scope" ng-repeat="playlist in playlists">
+              <h4 ui-sref-active="active" class="playlist-item active">
+                <a ui-sref="playlist({Id: playlist._id})" class="ng-binding" href="http://localhost:1337/?#/playlists/56bd04153defab672356f290">test 21</a>
+              </h4>
+          </section><!-- end ngRepeat: playlist in playlists -->
+          </section>
+          
+          
+        </sidebar>
+      </div>
+
+      <div class="col-xs-10">
+        <!-- uiView: undefined --><ui-view class="ng-scope"><div class="ng-scope">
+  <h3 class="ng-binding">test 21</h3>
+  <table class="table" ng-show="playlist.songs.length">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Artists</th>
+        <th>Genres</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- ngRepeat: song in playlist.songs --><tr ng-repeat="song in playlist.songs" ng-class="{active: song === getCurrentSong() }" class="ng-scope">
+        <td>
+          <button class="btn btn-default btn-xs" ng-click="toggle(song)">
+            <span class="glyphicon glyphicon-play" ng-class="{ &#39;glyphicon-pause&#39;: isPlaying(song), &#39;glyphicon-play&#39;: !isPlaying(song) }"></span>
+          </button>
+        </td>
+        <td class="ng-binding">The Stars Are Out</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope"></span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+        <td><span class="glyphicon glyphicon-remove" ng-click="remove(song)"></span></td>
+      </tr><!-- end ngRepeat: song in playlist.songs --><tr ng-repeat="song in playlist.songs" ng-class="{active: song === getCurrentSong() }" class="ng-scope">
+        <td>
+          <button class="btn btn-default btn-xs" ng-click="toggle(song)">
+            <span class="glyphicon glyphicon-play" ng-class="{ &#39;glyphicon-pause&#39;: isPlaying(song), &#39;glyphicon-play&#39;: !isPlaying(song) }"></span>
+          </button>
+        </td>
+        <td class="ng-binding">I Should Be Born (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope"></span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+        <td><span class="glyphicon glyphicon-remove" ng-click="remove(song)"></span></td>
+      </tr><!-- end ngRepeat: song in playlist.songs --><tr ng-repeat="song in playlist.songs" ng-class="{active: song === getCurrentSong() }" class="ng-scope">
+        <td>
+          <button class="btn btn-default btn-xs" ng-click="toggle(song)">
+            <span class="glyphicon glyphicon-play" ng-class="{ &#39;glyphicon-pause&#39;: isPlaying(song), &#39;glyphicon-play&#39;: !isPlaying(song) }"></span>
+          </button>
+        </td>
+        <td class="ng-binding">My Song For January</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope"></span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+        <td><span class="glyphicon glyphicon-remove" ng-click="remove(song)"></span></td>
+      </tr><!-- end ngRepeat: song in playlist.songs -->
+    </tbody>
+  </table>
+  <small ng-hide="playlist.songs.length" class="ng-hide">No songs.</small>
+  <hr>
+</div>
+<div class="ng-scope">
+<h2>Add to Playlist</h2>
+ <input class="form-control ng-valid ng-dirty ng-valid-parse ng-empty ng-touched" type="text" name="artSearch" ng-model="artistSearch" placeholder="Search by song name">
+ <br>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Artists</th>
+        <th>Genres</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">The Stars Are Out</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">The Stars Are Out (Interlude)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">I Should Be Born (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Heading For Nowhere (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Weathervanes (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">No Nations (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Sure Sign (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Time Will Remember (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Fully Shed (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Always A First Time (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">It's A Funny Thing (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Tired Of The Comfort (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Jets Overhead</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Rock/Rock</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">1 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">2 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">3 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">4 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">5 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">6 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">7 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">8 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">9 Ghosts I</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Ambient/Ambient</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">999,999</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">1,000,000</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Letting You</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Discipline</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Echoplex</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Head Down</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Lights in the Sky</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Corona Radiata</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">The Four of Us are Dying</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Demon Seed</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Nine Inch Nails</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Industrial</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">The Tea Party</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">After Christmas</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">My Song For January</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Notebook Reading</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Seeing The Future</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Summers Coming</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Nights Tale</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Leave Well Enough Alone (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Stop It (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Waking Up (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Wonderland (Instrumental)</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">After The Week I've Had</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch --><tr ng-show="artistSearch" ng-repeat="song in allSongs | filter: artistSearch" ng-class="{active: song === getCurrentSong() }" class="ng-scope ng-hide">
+        <td>
+          <button class="btn btn-default btn-xs" style="background: green" ng-click="postmanPostSong(song)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </td>
+        <td class="ng-binding">Shooting Star</td>
+        <td><!-- ngRepeat: artist in song.artists --><span ng-repeat="artist in song.artists" class="ng-binding ng-scope">Dexter Britain</span><!-- end ngRepeat: artist in song.artists --></td>
+        <td class="ng-binding">Instrumental/Instrumental</td>
+      </tr><!-- end ngRepeat: song in allSongs | filter: artistSearch -->
+    </tbody>
+  </table>
+  </div>
+</div></ui-view>
+      </div>
+
+      <footer>
+        <div ng-show="getCurrentSong()" ng-controller="PlayerCtrl" class="ng-scope ng-hide">
+          <div class="pull-left">
+            <button class="btn btn-default" ng-click="previous()">
+              <span class="glyphicon glyphicon-step-backward"></span>
+            </button>
+            <button class="btn btn-default" ng-click="toggle()">
+              <span class="glyphicon glyphicon-play" ng-class="{&#39;glyphicon-pause&#39;: isPlaying(), &#39;glyphicon-play&#39;: !isPlaying()}"></span>
+            </button>
+            <button class="btn btn-default" ng-click="next()">
+              <span class="glyphicon glyphicon-step-forward"></span>
+            </button>
+          </div>
+          <div class="bar">
+            <div class="progress">
+              <div class="progress-bar" ng-style="{width: getPercent() + &#39;%&#39;}" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  
+
+</body></html>
