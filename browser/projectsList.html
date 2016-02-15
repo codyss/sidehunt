@@ -1,0 +1,51 @@
+    <div class="jumbotron jumbo-header">
+      <h1 id='jumbo-heading'>1601 Side Hunt</h1>
+      <p>A compilation of 1601's side projects. Check out all the great work and support your mates.</p>
+    </div>
+
+<!--     <div>
+      <button uib-popover-template="dynamicPopover.templateUrl" popover-trigger="click" popover-placement="top" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Popover With Template</button>
+    </div>
+ -->
+
+
+
+    <div class="scroll-heading">
+      <span class='section-name'>Projects</span>
+      <span class="section-scroll">
+        <span class='glyphicon glyphicon-triangle-left' ng-click="scrollLeftProject()"></span>
+        <span class='glyphicon glyphicon-triangle-right' ng-click="scrollRightProject()"></span>
+      </span>
+    </div>
+
+
+    <div class="side-list-project">
+     <div class="row">
+    <!-- <div class=""> -->
+      <div class="thumbnail" ng-repeat="project in projects | filter:searchText"> <!-- friendObj in friends | filter:search:strict GIVE THIS  A MAX SIZE /github-octocat.png" /webimg/{{project.urlTitle}}_img.png -->
+      <project-directive></project-directive>
+        
+      </div>
+      </div>
+      </div>
+
+
+
+      <div class="scroll-heading">
+        <span class='section-name'>Ideas</span>
+        <span class="section-scroll-idea">
+          <span class='glyphicon glyphicon-triangle-left' ng-click="scrollLeftIdea()"></span>
+          <span class='glyphicon glyphicon-triangle-right' ng-click="scrollRightIdea()"></span>
+        </span> 
+      </div>
+
+      <div class="side-list-idea">
+        <div class="row">
+          <!-- <div class="col-sm-6 col-lg-3"> -->
+            <div class="thumbnail" ng-repeat="idea in ideas | filter:searchText">
+            <idea-directive></idea-directive>
+              
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>

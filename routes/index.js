@@ -5,7 +5,8 @@ var bootstrapRouter = require('bootstrap-router');
 var _ = require('lodash');
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
-
+var webshot = require('webshot');
+var path = require('path');
 var models = require('../models/');
 
 
@@ -14,10 +15,7 @@ var Idea = require('../models').Idea;
 var Project = require('../models').Project;
 
 
-//lodash random for getting a random chat ID
-
-
-router.get('/', function(req, res, next ){
+router.get('/api', function(req, res, next ){
   //Make side hunt the first project all the time
   Promise.all([
      Project.find({}).populate('user'),
@@ -32,14 +30,19 @@ router.get('/', function(req, res, next ){
         return a.upVotes - b.upVotes;
       });
       ideas.reverse();
-      res.render("index", {
-      projects: projects,
-      ideas: ideas
+        res.json({
+        projects: projects,
+        ideas: ideas
       });
     })
     .then(null, function (err) {
     console.log(err);
   });
+});
+
+
+router.get('/*', function(req, res, next ){
+  res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
 
 
@@ -60,7 +63,7 @@ router.get('/ideas/:name', function (req, res, next) {
 });
 
 router.get('/add', function(req, res, next ){
-    res.render("addproject");
+    res.sendFile(path.join(__dirname, '../views/addproject.html'));
 });
 
 router.get('/addidea', function(req, res, next ){
@@ -69,9 +72,8 @@ router.get('/addidea', function(req, res, next ){
 
 router.post('/upvote/:type', function(req, res, next) {
   var type = req.params.type; //collection to add to
-  type = type.slice(0,1).toUpperCase() + type.slice(1);
   var data = req.body;
-  mongoose.model(type).findOneAndUpdate({title: data.title}, {$inc: {upVotes: 1}} , {new: true})
+  mongoose.model(type).findByIdAndUpdate(data.id, {$inc: {upVotes: 1}} , {new: true})
   .then(function(project) {
     res.json({upVotes: project.upVotes});
   })
@@ -83,7 +85,8 @@ router.post('/add', function (req, res, next) {
   Project.create(req.body).then(function(project) {
     res.redirect('/');
     return project;
-  }).then(function (project) {
+  })
+  .then(function (project) {
     var options = {
       url: project.githubData,
       headers: {
@@ -92,8 +95,11 @@ router.post('/add', function (req, res, next) {
     };
     request(options, function (err, res, body) {
       if (!err) {
-        var data = JSON.parse(body)
-        Project.findOneAndUpdate({title: project.title}, {imgPath: data.avatar_url})
+        var data = JSON.parse(body);
+        if (!data.name) {
+          data.name = data.login;
+        }
+        Project.findOneAndUpdate({title: project.title}, {imgPath: data.avatar_url, userName: data.name})
         .then(null, function(err) {
           console.log(err);
         })
@@ -103,16 +109,15 @@ router.post('/add', function (req, res, next) {
 })
 
 
-router.post('/addidea', function (req, res, next) {
+
+router.post('/api/addidea', function (req, res, next) {
   Idea.create(req.body).then(function(idea) {
-    res.redirect('/');
+    res.json({idea});
   })
 })
 
 router.post('/saveavatar', function (req, res, next) {
-  var url = req.body.url;
-  var title = req.body.title;
-  Project.findOneAndUpdate({title: title}, {imgPath: url}).then(function () {
+  Project.findOneAndUpdate({title: req.body.title}, {imgPath: req.body.url, userName: req.body.userName}).then(function () {
     res.json({});
   })
 })

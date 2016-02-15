@@ -1,9 +1,12 @@
 {
   "name": "sideshow",
   "version": "1.0.0",
-  "description": "",
+  "description": "Structure for new Express App",
   "main": "index.js",
   "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-bootstrap": "^1.1.2",
+    "angular-ui-router": "^0.2.18",
     "bluebird": "^3.2.1",
     "body-parser": "^1.14.2",
     "bootstrap": "^3.3.6",
@@ -18,12 +21,23 @@
     "request": "^2.69.0",
     "serve-favicon": "^2.3.0",
     "socket.io": "^1.4.4",
-    "swig": "^1.4.2"
+    "swig": "^1.4.2",
+    "ui-router": "^0.2.15",
+    "webshot": "^0.17.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codyss/sidehunt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codyss/sidehunt/issues"
+  },
+  "homepage": "https://github.com/codyss/sidehunt#readme"
 }

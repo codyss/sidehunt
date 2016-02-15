@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var projectSchema = new Schema({
   title: String,
+  userName: String,
   urlTitle: String,
   githubName: String,
   githubData: Schema.Types.Mixed,
@@ -13,6 +14,7 @@ var projectSchema = new Schema({
   description: String,
   tags: [String],
   imgPath: String,
+  websiteImg: String,
   upVotes: {type: Number, default: 0},
   upVoters: [String]
 });
@@ -48,7 +50,9 @@ userSchema.virtual('githubAPI').get(function() {
 })
 
 var ideaSchema = new Schema({
-  user: {type: Schema.Types.ObjectId, ref: 'User'},
+  githubName: String,
+  imgPath: String,
+  websiteImg: String,
   title: String,
   description: String,
   upVotes: {type: Number, default: 0}

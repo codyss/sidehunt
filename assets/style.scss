@@ -6,7 +6,7 @@ body {
   padding: 0px;
 }
 
-#main-body {
+.main-body {
   margin-left: 0px;
   margin-right: 0px;
   width: 100%;
@@ -18,13 +18,13 @@ body {
   border-radius: 5px;
 }
 
-#thumb-project-name {
-  font-weigth: bold;
+#thumb-project-name, #thumb-idea-name {
+  font-weight: bold;
   font-size: 18px;
 }
 
-#thumb-project-user {
-  font-weight: bold; 
+#thumb-project-user, #thumb-idea-user {
+  
   font-size: 16px; 
 }
 
@@ -108,10 +108,10 @@ form {
 }
 
 .upVoteButtonOff {
-  border: 2px solid #4e53ff;
-  color: blue;
+  border: 1px solid #4e53ff;
+  color: #4e53ff;
   &:hover {
-  border: 2px solid #4e53ff;
+  border: 1px solid #4e53ff;
   }
   .glyphicon {
   color: #4e53ff;  
@@ -133,8 +133,8 @@ form {
 
 .user-pic {
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   padding: 0px;
   margin-left: 10px;
   img {
@@ -163,6 +163,15 @@ form {
     color: #494949;
     }
   }
+}
+
+.popOverBox img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .scroll-heading {

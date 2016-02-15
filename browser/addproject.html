@@ -1,10 +1,9 @@
-{% extends "layout.html" %}
-
-{% block content %}
 
 
+<div class="container" class='main-body'>
+  <div class="container" class='main-body'>   
 
-  <form method="POST" action="/add">
+   <form method="POST" action="/add">
     <div class="form-group project-form">
       <label for="name" class="col-sm-2 control-label">Project Name</label>
       <div class="col-sm-10">
@@ -44,17 +43,7 @@
       <button type="submit" class="btn btn-primary btn-lg">Add Project</button>
     </div>
   
-  </form>
+  </form>   
 
-
-{% endblock %}
-
-
-{% block script %}
-
-  <script>$(function() {
-    $('#project-nav').toggleClass('active')
-  })
-  </script>
-
-{% endblock %}
+</div>
+</div>  
