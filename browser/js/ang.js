@@ -69,9 +69,8 @@ app.directive('ideaDirective', function (MainFactory) {
         <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
               <div class="caption">
                 <text id="thumb-idea-name">{{idea.title}}</text><br>
-                <text id="thumb-idea-user">By {{idea.user.firstName}} {{idea.user.lastName}}</text>
+                <text id="thumb-idea-user">By {{idea.userName}}</text>
                 <p>{{idea.description}}</p>
-                <p><a href="{{idea.route}}" class="btn btn-primary details-button" role="button">Details</a> 
                 <up-vote-button idea="idea" type="idea" ng-click="upVote(idea,'Idea')"></up-vote-button>
                 <a class="btn btn-primary user-pic" data-image="{{idea.imgPath}}" data-user="{{idea.githubName}}" data-title="{{idea.userName}}" data-placement="top" role="button" title="{{idea.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{idea.imgPath}}" /></div>'><img src="{{idea.imgPath}}"></a>
                <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
@@ -106,7 +105,7 @@ app.controller('main', function ($scope, MainFactory, data, $rootScope) {
   $scope.scrollRightProject = MainFactory.scrollRightProject;
   $scope.scrollRightIdea = MainFactory.scrollRightIdea;
   $scope.scrollLeftProject = MainFactory.scrollLeftProject;
-  $scope.scrollLeftIdea = MainFactory.scrollLeftIdea;
+  $scope.scrollLeftIdea = MainFactory.scrollLeftIdea; 
 
   $scope.dynamicPopover = {
     content: "Hello, World!",
