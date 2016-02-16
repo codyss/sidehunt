@@ -13,7 +13,7 @@ var projectSchema = new Schema({
   website: String,
   description: String,
   tags: [String],
-  imgPath: String,
+  imgPath: String,  
   websiteImg: String,
   upVotes: {type: Number, default: 0},
   upVoters: [String]

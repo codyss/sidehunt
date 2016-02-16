@@ -41,6 +41,14 @@ router.get('/api', function(req, res, next ){
 });
 
 
+router.get('/api/idea/:id', function (req, res, next) {
+    Idea.findOne({_id: req.params.id})
+    .then(function(idea) {
+      res.json(idea);
+    }).then(null, console.error);
+});
+
+
 router.get('/*', function(req, res, next ){
   res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
@@ -55,12 +63,7 @@ router.get('/projects/:title', function (req, res, next) {
     
 })
 
-router.get('/ideas/:name', function (req, res, next) {
-    Idea.findOne({name: req.params.idea})
-    .then(function(idea) {
-      res.render('idea', {idea: idea});
-    }).then(null, console.error);
-});
+
 
 router.get('/add', function(req, res, next ){
     res.sendFile(path.join(__dirname, '../views/addproject.html'));

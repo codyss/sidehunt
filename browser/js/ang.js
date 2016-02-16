@@ -19,6 +19,17 @@ app.config(function($stateProvider) {
       }
     }
   })
+  
+  $stateProvider.state('ideaDetail', {
+    url: '/idea/:ideaId',
+    templateUrl: '/idea.html',
+    controller: 'Idea',
+    resolve: {
+      ideaToShow: function(IdeaFactory, $stateParams) {
+        return IdeaFactory.getIdea($stateParams.ideaId);
+      }
+    }
+  })
 });
 
 
@@ -27,7 +38,7 @@ app.config(function($stateProvider) {
     url: '/add-idea',
     templateUrl: '/addidea.html',
     controller: 'Add'
-  })
+    })
 })
 
 
@@ -38,6 +49,10 @@ app.config(function($stateProvider) {
     controller: 'Add'
   })
 })
+
+
+
+
 
 
 app.directive('projectDirective', function (MainFactory) {
@@ -71,6 +86,7 @@ app.directive('ideaDirective', function (MainFactory) {
                 <text id="thumb-idea-name">{{idea.title}}</text><br>
                 <text id="thumb-idea-user">By {{idea.userName}}</text>
                 <p>{{idea.description}}</p>
+                <p><a href="/idea/{{idea._id}}" class="btn btn-primary details-button" role="button">Details</a> 
                 <up-vote-button idea="idea" type="idea" ng-click="upVote(idea,'Idea')"></up-vote-button>
                 <a class="btn btn-primary user-pic" data-image="{{idea.imgPath}}" data-user="{{idea.githubName}}" data-title="{{idea.userName}}" data-placement="top" role="button" title="{{idea.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{idea.imgPath}}" /></div>'><img src="{{idea.imgPath}}"></a>
                <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
@@ -123,6 +139,14 @@ app.controller('Add', function ($rootScope, $scope, AddFactory) {
     AddFactory.addIdea($scope.githubNameModel, $scope.titleModel, $scope.descriptionModel);
   }
   
+})
+
+
+app.controller('Idea', function ($scope, $rootScope, ideaToShow) {
+  $scope.idea = ideaToShow;
+
+
+  $rootScope.showSearch = true;
 })
 
 
