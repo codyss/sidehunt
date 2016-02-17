@@ -6,6 +6,10 @@ body {
   padding: 0px;
 }
 
+#dateC {
+  width: 200px;
+}
+
 .main-body {
   margin-left: 0px;
   margin-right: 0px;
@@ -39,6 +43,8 @@ body {
 
 .row {
   display: flex;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .side-list-idea, .side-list-project {
@@ -74,6 +80,10 @@ form {
   margin-top: 50px;
 }
 
+#ideaComment {
+  margin-top: 10px;
+}
+
 .section-name {
   color: #CE1D25;
   font-size: 20px;
@@ -93,7 +103,39 @@ form {
   margin-bottom: 20px;
 }
 
-#jumbo-heading {
+#ideajumbo {
+  background-color: #a2919d;
+  margin-left: 0px;
+  padding-left: 0px
+}
+
+#ideaPageVote {
+  float: right;
+}
+
+#ideaJumboHead {
+
+}
+
+.table {
+  width: 100%
+}
+
+#titleAndDescription {
+  width: 70%;
+  left: 0px;
+  text-align: left;
+  display: inline-block;
+}
+
+#voting {
+  width: 20%;
+  right: 0px;
+  display: inline-block;
+  margin-bottom: 10px
+}
+
+.jumbo-heading {
   margin-top: 10px;
   color: white;
 }

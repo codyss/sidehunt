@@ -19,7 +19,7 @@ app.config(function($stateProvider) {
       }
     }
   })
-  
+
   $stateProvider.state('ideaDetail', {
     url: '/idea/:ideaId',
     templateUrl: '/idea.html',
@@ -27,6 +27,10 @@ app.config(function($stateProvider) {
     resolve: {
       ideaToShow: function(IdeaFactory, $stateParams) {
         return IdeaFactory.getIdea($stateParams.ideaId);
+      }
+      ,
+      comments: function(IdeaFactory, $stateParams) {
+        return IdeaFactory.getComments($stateParams.ideaId)
       }
     }
   })
@@ -142,9 +146,22 @@ app.controller('Add', function ($rootScope, $scope, AddFactory) {
 })
 
 
-app.controller('Idea', function ($scope, $rootScope, ideaToShow) {
+app.controller('Idea', function ($scope, $rootScope, $stateParams, ideaToShow, MainFactory, IdeaFactory, comments) {
   $scope.idea = ideaToShow;
+  $scope.comments = comments
+  angular.extend($scope, MainFactory)
 
+
+  $scope.newcomment = {};
+
+  $scope.addComment = function () {
+    IdeaFactory.addComment($stateParams.ideaId, $scope.newcomment.text)
+    .then(comment => {
+      $scope.newcomment = {};
+      $scope.comments.push(comment.data)
+      console.log(comment.data)      
+    })
+  }
 
   $rootScope.showSearch = true;
 })

@@ -39,6 +39,13 @@ projectSchema.virtual('route').get(function() {
   return '/projects/' + this.urlTitle;
 });
 
+
+var commentSchema = new Schema({
+  date: {type: Date, default: Date.now },
+  text: String, 
+  idea: {type: Schema.Types.ObjectId, ref: 'Idea'}
+})
+
 var userSchema = new Schema({
   githubName: String,
   projects: [{type: Schema.Types.ObjectId, ref: 'Project'}],
@@ -63,6 +70,7 @@ var ideaSchema = new Schema({
 var Project = mongoose.model('Project', projectSchema);
 var User = mongoose.model('User', userSchema);
 var Idea = mongoose.model('Idea', ideaSchema);
+var Comment = mongoose.model('Comment', commentSchema);
 
 
 if(process.env.NODE_ENV === 'production') {
@@ -79,7 +87,8 @@ if(process.env.NODE_ENV === 'production') {
 module.exports = {
   Project: Project,
   Idea: Idea,
-  User: User
+  User: User,
+  Comment: Comment
 }
 
 

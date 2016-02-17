@@ -13,6 +13,7 @@ var models = require('../models/');
 var User = require('../models').User;
 var Idea = require('../models').Idea;
 var Project = require('../models').Project;
+var Comment = require('../models').Comment;
 
 
 router.get('/api', function(req, res, next ){
@@ -42,12 +43,30 @@ router.get('/api', function(req, res, next ){
 
 
 router.get('/api/idea/:id', function (req, res, next) {
-    Idea.findOne({_id: req.params.id})
-    .then(function(idea) {
-      res.json(idea);
-    }).then(null, console.error);
+  Idea.findOne({_id: req.params.id})
+  .then(function(idea) {
+    res.json(idea);
+  }).then(null, console.error);
 });
 
+router.get('/api/idea/comments/:id', function (req, res, next) {
+  Comment.find({idea: req.params.id})
+    .then(ideas=> res.json(ideas))
+    .then(null, console.error)
+})
+
+
+router.post('/api/idea/addcomment', function (req, res, next) {
+  Comment.create({
+    text: req.body.text,
+    idea: req.body.ideaId
+  })
+  .then(comment => {
+    res.json(comment);
+    console.log(comment);
+  })
+  .then(null, err=> console.log(err))
+})
 
 router.get('/*', function(req, res, next ){
   res.sendFile(path.join(__dirname, '../browser/index.html'));
