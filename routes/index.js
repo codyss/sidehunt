@@ -10,10 +10,12 @@ var path = require('path');
 var models = require('../models/');
 
 
+
 var User = require('../models').User;
 var Idea = require('../models').Idea;
 var Project = require('../models').Project;
 var Comment = require('../models').Comment;
+
 
 
 router.get('/api', function(req, res, next ){
@@ -73,8 +75,8 @@ router.get('/*', function(req, res, next ){
 });
 
 
-router.get('/projects/:title', function (req, res, next) {
-    Project.findOne({title: req.params.title})
+router.get('/api/projects/:id', function (req, res, next) {
+    Project.findOne({_id: req.params.id})
     .then(function(project) {
       res.render('project', {project: project});
     })

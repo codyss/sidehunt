@@ -1,0 +1,23 @@
+   <div id="ideajumbo" class="jumbotron jumbo-header">
+      <div id=titleAndDescription>
+
+      </div>
+      <div id="voting">
+  <!--     <up-vote-button id="ideaPageVote" idea="idea" type="idea" ng-click="upVote(idea,'Idea')"></up-vote-button> -->
+      </div>
+    </div>
+    <div>
+      <div class="row">
+        <ul>
+          <li ng-repeat="idea in stormideas">{{idea.text}}
+             <button ng-click="stormideas.$remove(idea)">x</button>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-8">
+        <form name="stormIdea" novalidate>
+           <textarea name="text" type="text" ng-model="ideaToAdd.text" class="form-control"></textarea>
+           <button id="ideaComment" ng-click="addIdea()" class="btn btn-primary btn-lg">Post</button>
+        </form>
+      </div>
+    </div>

@@ -1,4 +1,4 @@
-var app = angular.module('sidehunt', ['ui.router', 'ui.bootstrap']);
+var app = angular.module('sidehunt', ['ui.router', 'ui.bootstrap', 'firebase']);
 
 app.config(function($urlRouterProvider) {
   $urlRouterProvider.when('/', '/index')
@@ -54,6 +54,43 @@ app.config(function($stateProvider) {
   })
 })
 
+app.config(function($stateProvider) {
+  $stateProvider.state('ProjectStorm', {
+    url: '/projectstorm/:projectId',
+    templateUrl: '/projectstorm.html',
+    controller: 'FireCtrl',
+    resolve: {
+      projectToShow: function(MainFactory) {
+        return MainFactory.getProject($stateParams.projectId)
+      }
+    }
+  })
+})
+
+app.controller('FireCtrl', function($scope, $firebaseArray, $stateParams, projectToShow) {
+  var project = $stateParams.projectId;
+  $scope.stormideas = $firebaseArray(new Firebase('https://sidehunt.firebaseio.com/stormideas'+project));
+  
+  // for ordering
+  // var query = stormideas.orderByChild("timestamp").limitToLast(25);
+  // $scope.stormideasOrdered = $firebaseArray(query);
+
+  $scope.ideaToAdd = {}
+
+  $scope.addIdea = function () {
+    $scope.stormideas.$add({
+      text: $scope.ideaToAdd.text,
+      timestamp: Firebase.ServerValue.TIMESTAMP
+    })
+
+    $scope.ideaToAdd.text = '';
+    // var commentNumber = Date.now()
+    // stormideas.$add({commentNumber: $scope.ideaToAdd.text})
+  }
+  // var syncObject = fb.$asObject();
+
+  // syncObject.$bindTo($scope, 'days');
+})
 
 
 

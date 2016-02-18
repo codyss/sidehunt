@@ -47,6 +47,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'browser')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
+
+// var session = require('express-session');
+
+// app.use(session({
+//     // this mandatory configuration ensures that session IDs are not predictable
+//     secret: 'hunting'
+// }));
+
+// app.use(function (req, res, next) {
+//     console.log('session', req.session);
+//     next();
+// });
+
 app.use('/', routes);
 
 app.use(function (err, req, res, next) {

@@ -5,7 +5,13 @@ app.factory('MainFactory', function($http) {
   MainFactory.getData = function () {
     return $http.get('/api')
     .then(obj => obj.data)
-    .catch(console.error.bind(console));
+    .catch(console.error);
+  }
+
+  MainFactory.getProject = function (id) {
+    return $http.get('/api/projects/' + id)
+    .then(project => project.data)
+    .catch(console.error)
   }
 
 
