@@ -56,11 +56,11 @@ app.config(function($stateProvider) {
 
 app.config(function($stateProvider) {
   $stateProvider.state('ProjectStorm', {
-    url: '/projectstorm/:projectId',
+    url: '/project/:projectId',
     templateUrl: '/projectstorm.html',
     controller: 'FireCtrl',
     resolve: {
-      projectToShow: function(MainFactory) {
+      projectToShow: function(MainFactory, $stateParams) {
         return MainFactory.getProject($stateParams.projectId)
       }
     }
@@ -69,7 +69,7 @@ app.config(function($stateProvider) {
 
 app.controller('FireCtrl', function($scope, $firebaseArray, $stateParams, projectToShow) {
   var project = $stateParams.projectId;
-  $scope.stormideas = $firebaseArray(new Firebase('https://sidehunt.firebaseio.com/stormideas'+project));
+  $scope.stormideas = $firebaseArray(new Firebase('https://sidehunt.firebaseio.com/stormideas/'+project));
   
   // for ordering
   // var query = stormideas.orderByChild("timestamp").limitToLast(25);
@@ -105,7 +105,8 @@ app.directive('projectDirective', function (MainFactory) {
             <text id="thumb-project-name">{{project.title}}</text><br>
             <text id="thumb-project-user">By {{project.userName}}</text>
             <p>{{project.description}}</p>
-            <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a> 
+            <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a>
+            <a href="project/{{project._id}}" class="btn btn-primary details-button" role="button">Discuss</a> 
             <up-vote-button project="project" type="project" ng-click="upVote(project,'Project')"></up-vote-button>
             <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
         </div>`,
