@@ -1,23 +1,24 @@
    <div id="ideajumbo" class="jumbotron jumbo-header">
       <div id=titleAndDescription>
-
+      <h2 id="ideaJumboHead" class='jumbo-heading'>{{project.title}} <medium> - {{project.userName}}</medium></h2>
+      <p>{{project.description}}</p>
       </div>
       <div id="voting">
-  <!--     <up-vote-button id="ideaPageVote" idea="idea" type="idea" ng-click="upVote(idea,'Idea')"></up-vote-button> -->
+      <up-vote-button id="projectPageVote" project="project" type="project" ng-click="upVote(project,'Project')"></up-vote-button>
       </div>
     </div>
     <div>
       <div class="row">
-        <ul>
-          <li ng-repeat="idea in stormideas">{{idea.text}}
-             <button ng-click="stormideas.$remove(idea)">x</button>
-          </li>
-        </ul>
+        <table class='table'>
+          <tbody>
+            <tr ng-repeat="comment in stormProject"><td>{{comment.timestamp | date:'MM/dd @ h:mma'}}</td><td>{{comment.text}}</td><td><button class="btn btn-default upVoteButton" ng-click="like(comment)">{{comment.likes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button></td><td><button ng-click="stormProject.$remove(comment)">x</button></td></tr> 
+          </tbody>
+        </table>
       </div>
       <div class="col-sm-8">
         <form name="stormIdea" novalidate>
-           <textarea name="text" type="text" ng-model="ideaToAdd.text" class="form-control"></textarea>
-           <button id="ideaComment" ng-click="addIdea()" class="btn btn-primary btn-lg">Post</button>
+           <textarea name="text" type="text" ng-model="commentToAdd.text" class="form-control"></textarea>
+           <button id="projectComment" ng-click="addComment()" class="btn btn-primary btn-lg">Post</button>
         </form>
       </div>
     </div>

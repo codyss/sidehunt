@@ -67,29 +67,34 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('FireCtrl', function($scope, $firebaseArray, $stateParams, projectToShow) {
+app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, projectToShow, MainFactory) {
+  $scope.project = projectToShow;
   var project = $stateParams.projectId;
-  $scope.stormideas = $firebaseArray(new Firebase('https://sidehunt.firebaseio.com/stormideas/'+project));
-  
-  // for ordering
-  // var query = stormideas.orderByChild("timestamp").limitToLast(25);
-  // $scope.stormideasOrdered = $firebaseArray(query);
+  var url = 'https://sidehunt.firebaseio.com/stormideas/'+project
+  $scope.stormProject = $firebaseArray(new Firebase(url));
 
-  $scope.ideaToAdd = {}
 
-  $scope.addIdea = function () {
-    $scope.stormideas.$add({
-      text: $scope.ideaToAdd.text,
-      timestamp: Firebase.ServerValue.TIMESTAMP
+  $scope.commentToAdd = {};
+  angular.extend($scope, MainFactory)
+
+  //figure out how to save the comment on the project
+  $scope.like = function (comment) {
+    var newUrl = url+'/'+comment.$id+'/likes'
+    var obj = $firebaseObject(new Firebase(newUrl))
+    obj.$value = comment.likes+1
+    obj.$save();
+  } 
+
+  $scope.addComment = function () {
+    $scope.stormProject.$add({
+      text: $scope.commentToAdd.text,
+      timestamp: Firebase.ServerValue.TIMESTAMP,
+      likes: 0
     })
 
-    $scope.ideaToAdd.text = '';
-    // var commentNumber = Date.now()
-    // stormideas.$add({commentNumber: $scope.ideaToAdd.text})
-  }
-  // var syncObject = fb.$asObject();
+    $scope.commentToAdd.text = '';
 
-  // syncObject.$bindTo($scope, 'days');
+  }
 })
 
 

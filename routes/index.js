@@ -70,19 +70,21 @@ router.post('/api/idea/addcomment', function (req, res, next) {
   .then(null, err=> console.log(err))
 })
 
+router.get('/api/projects/:id', function (req, res, next) {
+    Project.findOne({_id: req.params.id})
+    .then(function(project) {
+      console.log(project);
+      res.json(project);
+    })
+    .then(null, console.error);
+})
+
 router.get('/*', function(req, res, next ){
   res.sendFile(path.join(__dirname, '../browser/index.html'));
 });
 
 
-router.get('/api/projects/:id', function (req, res, next) {
-    Project.findOne({_id: req.params.id})
-    .then(function(project) {
-      res.render('project', {project: project});
-    })
-    .then(null, console.error);
-    
-})
+
 
 
 
