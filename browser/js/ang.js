@@ -70,8 +70,14 @@ app.config(function($stateProvider) {
 app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, projectToShow, MainFactory) {
   $scope.project = projectToShow;
   var project = $stateParams.projectId;
-  var url = 'https://sidehunt.firebaseio.com/stormideas/'+project
-  $scope.stormProject = $firebaseArray(new Firebase(url));
+  var url = 'https://sidehunt.firebaseio.com/stormideas/'+project;
+  var projectCommentsRef = new Firebase(url)
+  $scope.stormProject = $firebaseArray(projectCommentsRef);
+
+  // var query = projectCommentsRef.orderByChild("likes").limitToLast(25);
+  //   // the $firebaseArray service properly handles database queries as well
+  // $scope.filteredComments = $firebaseArray(query);
+
 
 
   $scope.commentToAdd = {};
@@ -112,7 +118,7 @@ app.directive('projectDirective', function (MainFactory) {
             <p>{{project.description}}</p>
             <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a>
             <a href="project/{{project._id}}" class="btn btn-primary details-button" role="button">Discuss</a> 
-            <up-vote-button project="project" type="project" ng-click="upVote(project,'Project')"></up-vote-button>
+            <up-vote-button project="project" type="project" ng-click="upVote(project,'Project', projects)"></up-vote-button>
             <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
         </div>`,
     link: function($scope) {
@@ -128,13 +134,13 @@ app.directive('ideaDirective', function (MainFactory) {
   return {
     restrict: 'E',
     template: `        
-        <img id="project_img" class="img-responsive" src="/github-octocat.png" alt="...">
+        <img id="project_img" class="img-responsive" src="/github-octocat.png">
               <div class="caption">
                 <text id="thumb-idea-name">{{idea.title}}</text><br>
                 <text id="thumb-idea-user">By {{idea.userName}}</text>
                 <p>{{idea.description}}</p>
                 <p><a href="/idea/{{idea._id}}" class="btn btn-primary details-button" role="button">Details</a> 
-                <up-vote-button idea="idea" type="idea" ng-click="upVote(idea,'Idea')"></up-vote-button>
+                <up-vote-button idea="idea" type="idea" ng-click="upVote(idea,'Idea', ideas)"></up-vote-button>
                 <a class="btn btn-primary user-pic" data-image="{{idea.imgPath}}" data-user="{{idea.githubName}}" data-title="{{idea.userName}}" data-placement="top" role="button" title="{{idea.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{idea.imgPath}}" /></div>'><img src="{{idea.imgPath}}"></a>
                <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
               </div>`,

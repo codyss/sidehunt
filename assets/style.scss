@@ -17,9 +17,11 @@ body {
 }
 
 #project_img {
-  width: 100%;
+  width: 90%;
   height: auto;
   border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #thumb-project-name, #thumb-idea-name {
@@ -50,13 +52,13 @@ body {
 .side-list-idea, .side-list-project {
   overflow-x: auto;
   overflow-y: hidden;
-  height: 320px;
+  height: 280px;
   margin-bottom: 20px;
   padding-left: 10px;
 }
 
 .thumbnail {
-  width: 275px;
+  width: 280px;
   display: inline-block;
   margin: 5px;
   flex-basis: auto;
@@ -66,9 +68,9 @@ body {
 }
 
 .caption {
-  height: 165px;
+  height: 135px;
   p  {
-    height: 60px;
+    height: 35px;
   }
 }
 
@@ -188,6 +190,10 @@ form {
 .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a, .navbar-default .navbar-nav>.active>a {
   color: #CE1D25;
   font-weight: 500;
+}
+
+.navbar {
+  background-color: white;
 }
 
 .section-scroll, .section-scroll-idea {

@@ -15,11 +15,13 @@ app.factory('MainFactory', function($http) {
   }
 
 
-  MainFactory.upVote = function (projectObj, type) {
-    console.log(projectObj);
+  MainFactory.upVote = function (projectObj, type, projects) {
     $http.post('/upvote/'+ type, {id: projectObj._id})
     .then(function (res) {
       projectObj.upVotes = res.data.upVotes;
+      projects.sort(function(a, b) {
+        return b.upVotes - a.upVotes;
+      })
     })
   }
 

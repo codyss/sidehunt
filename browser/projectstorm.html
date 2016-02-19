@@ -11,7 +11,7 @@
       <div class="row">
         <table class='table'>
           <tbody>
-            <tr ng-repeat="comment in stormProject"><td>{{comment.timestamp | date:'MM/dd @ h:mma'}}</td><td>{{comment.text}}</td><td><button class="btn btn-default upVoteButton" ng-click="like(comment)">{{comment.likes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button></td><td><button ng-click="stormProject.$remove(comment)">x</button></td></tr> 
+            <tr ng-repeat="comment in stormProject | orderBy: '-likes'"><td>{{comment.timestamp | date:'MM/dd @ h:mma'}}</td><td>{{comment.text}}</td><td><button class="btn btn-default upVoteButton" ng-click="like(comment)">{{comment.likes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button></td><td><button ng-click="stormProject.$remove(comment)">x</button></td></tr> 
           </tbody>
         </table>
       </div>
