@@ -10,18 +10,15 @@
     <div>
       <div class="row">
         <table class='table'>
-        <thead>
-        <tr><th id="dateC">Date</th><th>Comment</th></tr>
-        </thead>
         <tbody>
-          <tr ng-repeat="comment in comments"><td>{{comment.date | date:'MM/dd @ h:mma'}}</td><td>{{comment.text}}</td></tr>  
+          <tr ng-repeat="comment in ideaComments | orderBy: '-likes'"><td>{{comment.timestamp | date:'MM/dd @ h:mma'}}</td><td>{{comment.text}}</td><td><button class="btn btn-default upVoteButton" ng-click="like(comment)">{{comment.likes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button></td><td><button ng-click="ideaComments.$remove(comment)">x</button></td></tr>  
         </tbody>
         </table>
       </div>
       <div class="col-sm-8">
-        <form name="commentForm" ng-submit="addComment()" method="POST" novalidate>
-           <textarea name="text" type="text" ng-model="newcomment.text" class="form-control"></textarea>
-           <button id="ideaComment" type="submit" class="btn btn-primary btn-lg">Post</button>
+        <form name="commentForm"  novalidate>
+           <textarea name="text" type="text" ng-model="newComment.text" class="form-control"></textarea>
+           <button id="ideaComment" ng-click="addComment()" class="btn btn-primary btn-lg">Post</button>
         </form>
       </div>
     </div>

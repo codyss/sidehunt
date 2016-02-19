@@ -73,7 +73,6 @@ router.post('/api/idea/addcomment', function (req, res, next) {
 router.get('/api/projects/:id', function (req, res, next) {
     Project.findOne({_id: req.params.id})
     .then(function(project) {
-      console.log(project);
       res.json(project);
     })
     .then(null, console.error);

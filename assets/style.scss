@@ -1,5 +1,6 @@
 *  {
   box-sizing: border-box;
+  font-family: Trebuchet MS;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
 }
 
 #project_img {
-  width: 90%;
+  width: 80%;
   height: auto;
   border-radius: 5px;
   margin-left: auto;
@@ -26,12 +27,12 @@ body {
 
 #thumb-project-name, #thumb-idea-name {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 19px;
 }
 
 #thumb-project-user, #thumb-idea-user {
   
-  font-size: 16px; 
+  font-size: 15px; 
 }
 
 .project-form input, .project-form textarea, .project-form label{
@@ -52,8 +53,8 @@ body {
 .side-list-idea, .side-list-project {
   overflow-x: auto;
   overflow-y: hidden;
-  height: 280px;
-  margin-bottom: 20px;
+  height: auto;
+  margin-bottom: 10px;
   padding-left: 10px;
 }
 
@@ -102,7 +103,7 @@ form {
   background: #CE1D25;
   text-align: center;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 #ideajumbo {

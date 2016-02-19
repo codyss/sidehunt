@@ -22,16 +22,16 @@ app.config(function($stateProvider) {
 
   $stateProvider.state('ideaDetail', {
     url: '/idea/:ideaId',
-    templateUrl: '/idea.html',
-    controller: 'Idea',
+    templateUrl: '/projectstorm.html',
+    controller: 'FireCtrl',
     resolve: {
-      ideaToShow: function(IdeaFactory, $stateParams) {
+      itemToShow: function(IdeaFactory, $stateParams) {
         return IdeaFactory.getIdea($stateParams.ideaId);
       }
-      ,
-      comments: function(IdeaFactory, $stateParams) {
-        return IdeaFactory.getComments($stateParams.ideaId)
-      }
+      // ,
+      // comments: function(IdeaFactory, $stateParams) {
+      //   return IdeaFactory.getComments($stateParams.ideaId)
+      // }
     }
   })
 });
@@ -60,48 +60,14 @@ app.config(function($stateProvider) {
     templateUrl: '/projectstorm.html',
     controller: 'FireCtrl',
     resolve: {
-      projectToShow: function(MainFactory, $stateParams) {
+      itemToShow: function(MainFactory, $stateParams) {
         return MainFactory.getProject($stateParams.projectId)
       }
     }
   })
 })
 
-app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, projectToShow, MainFactory) {
-  $scope.project = projectToShow;
-  var project = $stateParams.projectId;
-  var url = 'https://sidehunt.firebaseio.com/stormideas/'+project;
-  var projectCommentsRef = new Firebase(url)
-  $scope.stormProject = $firebaseArray(projectCommentsRef);
 
-  // var query = projectCommentsRef.orderByChild("likes").limitToLast(25);
-  //   // the $firebaseArray service properly handles database queries as well
-  // $scope.filteredComments = $firebaseArray(query);
-
-
-
-  $scope.commentToAdd = {};
-  angular.extend($scope, MainFactory)
-
-  //figure out how to save the comment on the project
-  $scope.like = function (comment) {
-    var newUrl = url+'/'+comment.$id+'/likes'
-    var obj = $firebaseObject(new Firebase(newUrl))
-    obj.$value = comment.likes+1
-    obj.$save();
-  } 
-
-  $scope.addComment = function () {
-    $scope.stormProject.$add({
-      text: $scope.commentToAdd.text,
-      timestamp: Firebase.ServerValue.TIMESTAMP,
-      likes: 0
-    })
-
-    $scope.commentToAdd.text = '';
-
-  }
-})
 
 
 
@@ -114,7 +80,7 @@ app.directive('projectDirective', function (MainFactory) {
         <img id="project_img" class="img-responsive" src="/github-octocat.png">
           <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
             <text id="thumb-project-name">{{project.title}}</text><br>
-            <text id="thumb-project-user">By {{project.userName}}</text>
+            <text id="thumb-project-user">{{project.userName}}</text>
             <p>{{project.description}}</p>
             <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a>
             <a href="project/{{project._id}}" class="btn btn-primary details-button" role="button">Discuss</a> 
@@ -137,7 +103,7 @@ app.directive('ideaDirective', function (MainFactory) {
         <img id="project_img" class="img-responsive" src="/github-octocat.png">
               <div class="caption">
                 <text id="thumb-idea-name">{{idea.title}}</text><br>
-                <text id="thumb-idea-user">By {{idea.userName}}</text>
+                <text id="thumb-idea-user">{{idea.userName}}</text>
                 <p>{{idea.description}}</p>
                 <p><a href="/idea/{{idea._id}}" class="btn btn-primary details-button" role="button">Details</a> 
                 <up-vote-button idea="idea" type="idea" ng-click="upVote(idea,'Idea', ideas)"></up-vote-button>
@@ -195,27 +161,78 @@ app.controller('Add', function ($rootScope, $scope, AddFactory) {
 })
 
 
-app.controller('Idea', function ($scope, $rootScope, $stateParams, ideaToShow, MainFactory, IdeaFactory, comments) {
-  $scope.idea = ideaToShow;
-  $scope.comments = comments
+// app.controller('Idea', function ($scope, $rootScope, $firebaseObject, $firebaseArray, $stateParams, ideaToShow, MainFactory, IdeaFactory) {
+//   $scope.idea = ideaToShow;
+//   angular.extend($scope, MainFactory);
+
+//   var idea = $stateParams.ideaId
+//   var url = 'https://sidehunt.firebaseio.com/ideacomments/'+idea;
+
+//   var ideaCommentsRef = new Firebase(url)
+//   $scope.ideaComments = $firebaseArray(ideaCommentsRef);
+
+//   $scope.newComment = {};
+
+//   $scope.addComment = function () {
+//     $scope.ideaComments.$add({
+//       text: $scope.newComment.text,
+//       timestamp: Firebase.ServerValue.TIMESTAMP,
+//       likes: 0
+//     })
+
+//   $scope.like = function (comment) {
+//     var newUrl = url+'/'+comment.$id+'/likes'
+//     var obj = $firebaseObject(new Firebase(newUrl))
+//     obj.$value = comment.likes+1
+//     obj.$save();
+//   } 
+
+//   $scope.newComment.text = '';
+//   }
+
+//   // $scope.newcomment = {};
+
+//   // $scope.addComment = function () {
+//   //   IdeaFactory.addComment($stateParams.ideaId, $scope.newcomment.text)
+//   //   .then(comment => {
+//   //     $scope.newcomment = {};
+//   //     $scope.comments.push(comment.data)
+//   //     console.log(comment.data)      
+//   //   })
+//   // }
+
+//   $rootScope.showSearch = true;
+// })
+
+app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, itemToShow, MainFactory) {
+  $scope.project = itemToShow;
+  var project = $stateParams.projectId;
+  var url = 'https://sidehunt.firebaseio.com/projectcomments/'+project;
+  var projectCommentsRef = new Firebase(url)
+  $scope.storm = $firebaseArray(projectCommentsRef);
+
+  $scope.commentToAdd = {};
   angular.extend($scope, MainFactory)
 
-
-  $scope.newcomment = {};
+  //figure out how to save the comment on the project
+  $scope.like = function (comment) {
+    var newUrl = url+'/'+comment.$id+'/likes'
+    var obj = $firebaseObject(new Firebase(newUrl))
+    obj.$value = comment.likes+1
+    obj.$save();
+  } 
 
   $scope.addComment = function () {
-    IdeaFactory.addComment($stateParams.ideaId, $scope.newcomment.text)
-    .then(comment => {
-      $scope.newcomment = {};
-      $scope.comments.push(comment.data)
-      console.log(comment.data)      
+    $scope.storm.$add({
+      text: $scope.commentToAdd.text,
+      timestamp: Firebase.ServerValue.TIMESTAMP,
+      likes: 0
     })
+
+    $scope.commentToAdd.text = '';
+
   }
-
-  $rootScope.showSearch = true;
 })
-
-
 
 
 
