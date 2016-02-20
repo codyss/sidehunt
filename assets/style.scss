@@ -107,7 +107,7 @@ form {
 }
 
 #ideajumbo {
-  background-color: #a2919d;
+  background-color: #CE1D25;
   margin-left: 0px;
   padding-left: 0px
 }
@@ -225,4 +225,28 @@ form {
 
 .scroll-heading {
   margin-bottom: 5px;
+}
+
+.table {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#stormIdea {
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+#projectComment {
+  margin-left: 10px;
+}
+
+.commentDate {
+  float: right;
+  font-size: 70%;
+}
+
+.upVoteComment {
+  margin-left: 10px;
 }

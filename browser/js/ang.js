@@ -28,10 +28,6 @@ app.config(function($stateProvider) {
       itemToShow: function(IdeaFactory, $stateParams) {
         return IdeaFactory.getIdea($stateParams.ideaId);
       }
-      // ,
-      // comments: function(IdeaFactory, $stateParams) {
-      //   return IdeaFactory.getComments($stateParams.ideaId)
-      // }
     }
   })
 });
@@ -68,11 +64,6 @@ app.config(function($stateProvider) {
 })
 
 
-
-
-
-
-
 app.directive('projectDirective', function (MainFactory) {
   return {
     restrict: 'E',
@@ -88,9 +79,7 @@ app.directive('projectDirective', function (MainFactory) {
             <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
         </div>`,
     link: function($scope) {
-      // $scope.projects = data.projects;
       angular.extend($scope, MainFactory)
-      // $scope.upVote = MainFactory.upVote
     }
 
   }
@@ -111,11 +100,8 @@ app.directive('ideaDirective', function (MainFactory) {
                <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
               </div>`,
     link: function($scope) {
-      // $scope.projects = data.projects;
       angular.extend($scope, MainFactory)
-      // $scope.upVote = MainFactory.upVote
     }
-
   }
 })
 
@@ -135,18 +121,11 @@ app.controller('main', function ($scope, MainFactory, data, $rootScope) {
   $scope.projects = data.projects;
   $scope.ideas = data.ideas;
   
-  // $scope.upVote = MainFactory.upVote
-
   $scope.scrollRightProject = MainFactory.scrollRightProject;
   $scope.scrollRightIdea = MainFactory.scrollRightIdea;
   $scope.scrollLeftProject = MainFactory.scrollLeftProject;
   $scope.scrollLeftIdea = MainFactory.scrollLeftIdea; 
 
-  $scope.dynamicPopover = {
-    content: "Hello, World!",
-    templateUrl: "myPopoverTemplate.html",
-    title: "Title"
-  }
 
   $rootScope.showSearch = false;
 })
@@ -159,50 +138,6 @@ app.controller('Add', function ($rootScope, $scope, AddFactory) {
   }
   
 })
-
-
-// app.controller('Idea', function ($scope, $rootScope, $firebaseObject, $firebaseArray, $stateParams, ideaToShow, MainFactory, IdeaFactory) {
-//   $scope.idea = ideaToShow;
-//   angular.extend($scope, MainFactory);
-
-//   var idea = $stateParams.ideaId
-//   var url = 'https://sidehunt.firebaseio.com/ideacomments/'+idea;
-
-//   var ideaCommentsRef = new Firebase(url)
-//   $scope.ideaComments = $firebaseArray(ideaCommentsRef);
-
-//   $scope.newComment = {};
-
-//   $scope.addComment = function () {
-//     $scope.ideaComments.$add({
-//       text: $scope.newComment.text,
-//       timestamp: Firebase.ServerValue.TIMESTAMP,
-//       likes: 0
-//     })
-
-//   $scope.like = function (comment) {
-//     var newUrl = url+'/'+comment.$id+'/likes'
-//     var obj = $firebaseObject(new Firebase(newUrl))
-//     obj.$value = comment.likes+1
-//     obj.$save();
-//   } 
-
-//   $scope.newComment.text = '';
-//   }
-
-//   // $scope.newcomment = {};
-
-//   // $scope.addComment = function () {
-//   //   IdeaFactory.addComment($stateParams.ideaId, $scope.newcomment.text)
-//   //   .then(comment => {
-//   //     $scope.newcomment = {};
-//   //     $scope.comments.push(comment.data)
-//   //     console.log(comment.data)      
-//   //   })
-//   // }
-
-//   $rootScope.showSearch = true;
-// })
 
 app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, itemToShow, MainFactory) {
   $scope.project = itemToShow;
@@ -233,16 +168,3 @@ app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $st
 
   }
 })
-
-
-
-  // $('.thumbnail').on('click', '.upVoteButton', function () {
-  //   $votes = $(this);
-  //   var name = $votes.attr('data-name');
-  //   var type = $votes.attr('data-type');
-  //   $.post('/upvote/'+type, {title: name}, function(res) {
-  //     $votes.html(res.upVotes+" <span class='glyphicon glyphicon-triangle-top' aria-hidden='true'></span>");
-  //   })
-  //   $(this).toggleClass('upVoteButton');
-  //   $(this).toggleClass('upVoteButtonOff');
-  // })
