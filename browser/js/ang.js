@@ -88,12 +88,12 @@ app.directive('projectDirective', function (MainFactory) {
         <img id="project_img" class="img-responsive" src="/github-octocat.png">
           <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
             <text id="thumb-project-name">{{project.title}}</text><br>
-            <text id="thumb-project-user">{{project.userName}}</text>
+            <text id="thumb-project-user">{{project.user.displayName}}</text>
             <p>{{project.description}}</p>
             <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a>
             <a href="detail/project/{{project.$id}}" class="btn btn-primary details-button" role="button">Discuss</a> 
             <up-vote-button project="project" type="project" ng-click="upVote(project,'project', projects)"></up-vote-button>
-            <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
+            <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.user.profileImageURL}}"></a></p>
         </div>`,
     link: function($scope) {
       angular.extend($scope, MainFactory)
@@ -109,11 +109,11 @@ app.directive('ideaDirective', function (MainFactory) {
         <img id="project_img" class="img-responsive" src="/github-octocat.png">
               <div class="caption">
                 <text id="thumb-idea-name">{{idea.title}}</text><br>
-                <text id="thumb-idea-user">{{idea.userName}}</text>
+                <text id="thumb-idea-user">{{idea.user.displayName}}</text>
                 <p>{{idea.description}}</p>
                 <p><a href="detail/idea/{{idea.$id}}" class="btn btn-primary details-button" role="button">Details</a> 
                 <up-vote-button idea="idea" type="idea" ng-click="upVote(idea,'idea', ideas)"></up-vote-button>
-                <a class="btn btn-primary user-pic" data-image="{{idea.imgPath}}" data-user="{{idea.githubName}}" data-title="{{idea.userName}}" data-placement="top" role="button" title="{{idea.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{idea.imgPath}}" /></div>'><img src="{{idea.imgPath}}"></a>
+                <a class="btn btn-primary user-pic" data-image="{{idea.imgPath}}" data-user="{{idea.githubName}}" data-title="{{idea.userName}}" data-placement="top" role="button" title="{{idea.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{idea.imgPath}}" /></div>'><img src="{{idea.user.profileImageURL}}"></a>
                <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
               </div>`,
     link: function($scope) {
@@ -165,10 +165,12 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
   angular.extend($scope, AddFactory)
 
   //firebase authentication
-  var ref = new Firebase("https://sidehunt.firebaseio.com/");
-  $scope.authObj = $firebaseAuth(ref);
+  $scope.authObj = $firebaseAuth(new Firebase("https://sidehunt.firebaseio.com/"));
   var authData = $scope.authObj.$getAuth();
+
+
   
+
 
 
 
@@ -183,7 +185,7 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
       title: $scope.titleModel,
       description: $scope.descriptionModel,
       upVotes: 0,
-      user: ""
+      user: authData.github
     })
     $state.go('index');
   }
@@ -200,7 +202,7 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
       repo: $scope.githubRepo,
       githubData: "",
       upVotes: 0,
-      user: "",
+      user: authData.github,
       websiteImg: "",
       imgPath: "",
       upVotes: 0,
