@@ -158,6 +158,7 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
     $scope.ideaToAdd = $firebaseArray(new Firebase(url+'idea'))
     $scope.ideaToAdd.$add({
       githubName: $scope.githubNameModel,
+      type: 'idea',
       title: $scope.titleModel,
       description: $scope.descriptionModel,
       upVotes: 0,
@@ -173,6 +174,7 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
     $scope.projectToAdd.$add({
       githubName: $scope.githubName,
       title: $scope.title,
+      type: 'project',
       description: $scope.description,
       repo: $scope.githubRepo,
       githubData: "",
@@ -223,23 +225,22 @@ app.controller('GitHubCtrl', function($scope, $http, githubstats) {
 
 
 app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, itemToShow, MainFactory) {
-  console.log(itemToShow);
   $scope.project = itemToShow;
-  var project = $stateParams.projectId;
-  // var url = 'https://sidehunt.firebaseio.com/projectcomments/'+project;
-  var url = 'https://sidehunt.firebaseio.com/'+$stateParams.type+'/'+project+'/comments';
+  $scope.type = $stateParams.type
+  var projectId = $stateParams.projectId;
+  var url = 'https://sidehunt.firebaseio.com/'+$stateParams.type+'/'+projectId+'/comments';
   var projectCommentsRef = new Firebase(url)
   $scope.storm = $firebaseArray(projectCommentsRef);
 
   $scope.commentToAdd = {};
   angular.extend($scope, MainFactory)
 
-  //figure out how to save the comment on the project
   $scope.like = function (comment) {
-    var newUrl = url+'/'+comment.$id+'/likes'
-    var obj = $firebaseObject(new Firebase(newUrl))
-    obj.$value = comment.likes+1
-    obj.$save();
+    var obj = $firebaseObject(new Firebase(url+'/'+comment.$id));
+    obj.$loaded().then(() => {
+      obj.likes = comment.likes+1
+      obj.$save();
+    })
   } 
 
   $scope.addComment = function () {
