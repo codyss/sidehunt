@@ -81,39 +81,31 @@ router.get('/api/projects/:id', function (req, res, next) {
 
 var githubStats = {};
 
-// Using Promise.map:
-Promise.map(fileNames, function(fileName) {
-    // Promise.map awaits for returned promises as well.
-    return fs.readFileAsync(fileName);
-}).then(function() {
-    console.log("done");
-});
-
 router.get('/api/gitstats', function (req, res, next) {
     var url = 'https://github.com/';
     var students = ['codyss', 'apackin', 'jmeeke02'];
+    var studentsArr = students;
     var userUrls = [];
 
-    for(var i=0; i<students.length;i++) {
-      userUrls.push(
-        sjs.StaticScraper
-          .create(url + students[i])
-          .scrape(function($) {
-              return $('.contrib-number').map(function() {
-                  return $(this).text();
-              }).get()
-          })
-          .then(function(stats) {
-            githubStats[students[i]] = stats;
-          })
-      )
-    }
+    (function runStudents () {
+      sjs.StaticScraper
+        .create(url + students[0])
+        .scrape(function($) {
+            return $('.contrib-number').map(function() {
+                return $(this).text();
+            }).get()
+        })
+        .then(function(stats) {
+          githubStats[students[0]] = stats;
+          console.log(stats);
+          students.shift();
+          if(students.length>0) runStudents();
+        })
+    })()
+})
 
-    Promise.all(userUrls).then(results => {
-      res.json(results);
-      console.log(results);
-      console.log(githubStats);
-    })
+router.get('/api/studentstats', function (req, res, next) {
+  res.json(githubStats);
 })
 
 

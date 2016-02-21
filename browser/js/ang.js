@@ -36,17 +36,15 @@ app.config(function($stateProvider) {
   $stateProvider.state('githubstats', {
     url: '/githubstats',
     templateUrl: '/githubstats.html',
-    // controller: 'GitHubCtrl',
+    controller: 'GitHubCtrl',
     resolve: {
       githubstats: function ($http) {
-        return $http.get('api/gitstats').then(res => {
-          console.log(res.data)
-          return res.data
-        })
+        return $http.get('api/gitstats').then(res => res.data)
       }
     }
   })
 })
+
 
 
 app.config(function($stateProvider) {
@@ -154,6 +152,18 @@ app.controller('Add', function ($rootScope, $scope, AddFactory) {
   }
   
 })
+
+app.controller('GitHubCtrl', function($scope, $http) {
+  $scope.getStudentStats = function () {
+    $http.get('/api/studentstats')
+      .then(res => res.data)
+      .then(students => {
+        console.log(students)
+        $scope.studentStats = students
+      }).then(null, console.error)
+  }
+})
+
 
 app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, itemToShow, MainFactory) {
   $scope.project = itemToShow;
