@@ -11,10 +11,10 @@
       <div class="row">
         <table class='table table-bordered table-striped'>
           <tbody>
-            <tr ng-repeat="comment in storm | orderBy: '-likes'"><td style="font-size: larger;">{{comment.text}} <text class="commentDate">{{comment.timestamp | date:'M/dd'}}</text></td><td><button class="btn btn-default upVoteButton upVoteComment" ng-click="like(comment)">{{comment.likes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button>  <button style="float: right" ng-click="storm.$remove(comment)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>
+            <tr ng-repeat="comment in storm | orderBy: '-likes'"><td style="font-size: larger;">{{comment.text}} <text class="commentDate">{{comment.timestamp | date:'M/dd'}}</text></td><td><button class="btn btn-default upVoteButton upVoteComment" ng-click="like(comment)">{{comment.likes}} <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></button>  <button ng-show="comment.id=user.github.id" style="float: right" ng-click="removeComment(comment)" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td></tr>
 
             <tr ng-show="true"><td><textarea style="font-size: larger;" name="text" type="text" ng-model="commentToAdd.text" class="form-control"></textarea></td>
-           <td><button id="projectComment" ng-click="addComment()" class="btn btn-primary btn-lg">Post</button></td></tr>
+           <td><button id="projectComment" ng-click="addComment()" class="btn btn-primary btn-lg">Post</button><br><text ng-hide="comment.id=user.github.id">Log in to Post a comment</text></td></tr>
           </tbody>
         </table>
       </div>
