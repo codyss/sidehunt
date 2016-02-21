@@ -32,6 +32,22 @@ app.config(function($stateProvider) {
   })
 });
 
+app.config(function($stateProvider) {
+  $stateProvider.state('githubstats', {
+    url: '/githubstats',
+    templateUrl: '/githubstats.html',
+    // controller: 'GitHubCtrl',
+    resolve: {
+      githubstats: function ($http) {
+        return $http.get('api/gitstats').then(res => {
+          console.log(res.data)
+          return res.data
+        })
+      }
+    }
+  })
+})
+
 
 app.config(function($stateProvider) {
   $stateProvider.state('AddIdea', {

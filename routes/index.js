@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 var webshot = require('webshot');
 var path = require('path');
 var models = require('../models/');
+var sjs = require('scraperjs/src/Scraper');
 
 
 
@@ -77,6 +78,44 @@ router.get('/api/projects/:id', function (req, res, next) {
     })
     .then(null, console.error);
 })
+
+var githubStats = {};
+
+// Using Promise.map:
+Promise.map(fileNames, function(fileName) {
+    // Promise.map awaits for returned promises as well.
+    return fs.readFileAsync(fileName);
+}).then(function() {
+    console.log("done");
+});
+
+router.get('/api/gitstats', function (req, res, next) {
+    var url = 'https://github.com/';
+    var students = ['codyss', 'apackin', 'jmeeke02'];
+    var userUrls = [];
+
+    for(var i=0; i<students.length;i++) {
+      userUrls.push(
+        sjs.StaticScraper
+          .create(url + students[i])
+          .scrape(function($) {
+              return $('.contrib-number').map(function() {
+                  return $(this).text();
+              }).get()
+          })
+          .then(function(stats) {
+            githubStats[students[i]] = stats;
+          })
+      )
+    }
+
+    Promise.all(userUrls).then(results => {
+      res.json(results);
+      console.log(results);
+      console.log(githubStats);
+    })
+})
+
 
 router.get('/*', function(req, res, next ){
   res.sendFile(path.join(__dirname, '../browser/index.html'));
