@@ -22,13 +22,6 @@ app.factory('MainFactory', function($http, $firebaseArray, $firebaseObject) {
       ideaToAddUpVote.upVotes = projectObj.upVotes + 1;
       ideaToAddUpVote.$save()  
     })  
-    // $http.post('/upvote/'+ type, {id: projectObj._id})
-    // .then(function (res) {
-    //   projectObj.upVotes = res.data.upVotes;
-    //   projects.sort(function(a, b) {
-    //     return b.upVotes - a.upVotes;
-    //   })
-    // })
   }
 
   MainFactory.scrollRightProject = function () {
