@@ -160,7 +160,21 @@ app.controller('GitHubCtrl', function($scope, $http) {
       .then(students => {
         console.log(students);
         $scope.studentStats = students
+        generatePlot();
       }).then(null, console.error)
+  }
+
+  function generatePlot () {
+    data = {};
+    data.x = $scope.studentStats.map(std => {
+      return std.student
+    })
+    data.y = $scope.studentStats.map(std => {
+      return std.stats[0].slice(0,3)
+    })
+    data.type = 'bar'
+    Plotly.newPlot('myDiv', [data]);
+
   }
 })
 
