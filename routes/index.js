@@ -79,13 +79,17 @@ router.get('/api/projects/:id', function (req, res, next) {
     .then(null, console.error);
 })
 
-var githubStats = {};
+
+var githubStats;
 
 router.get('/api/gitstats', function (req, res, next) {
+    githubStats = [];
     var url = 'https://github.com/';
     var students = ['codyss', 'apackin', 'jmeeke02'];
     var studentsArr = students;
     var userUrls = [];
+
+    res.json({});
 
     (function runStudents () {
       sjs.StaticScraper
@@ -96,7 +100,10 @@ router.get('/api/gitstats', function (req, res, next) {
             }).get()
         })
         .then(function(stats) {
-          githubStats[students[0]] = stats;
+          var obj = {};
+          obj.student = students[0]
+          obj.stats = stats;
+          githubStats.push(obj);
           console.log(stats);
           students.shift();
           if(students.length>0) runStudents();

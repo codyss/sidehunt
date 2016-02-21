@@ -1,3 +1,13 @@
-<p ng-repeat="person in githubstats">
-{{person}}
-</p>
+<div id="ideajumbo" class="jumbotron jumbo-header">
+      <div id=titleAndDescription>
+      <h2 id="ideaJumboHead" class='jumbo-heading'>Student Github Stats <medium> Always Be Committing</medium></h2>
+      </div>
+      <div id="voting">
+      </div>
+    </div>
+
+<button ng-click="getStudentStats()">Get Stats</button>
+
+<text ng-repeat="student in studentStats">
+{{student.student}}'s stats are {{student.stats}}
+</text>

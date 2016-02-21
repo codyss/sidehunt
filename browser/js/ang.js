@@ -158,7 +158,7 @@ app.controller('GitHubCtrl', function($scope, $http) {
     $http.get('/api/studentstats')
       .then(res => res.data)
       .then(students => {
-        console.log(students)
+        console.log(students);
         $scope.studentStats = students
       }).then(null, console.error)
   }
