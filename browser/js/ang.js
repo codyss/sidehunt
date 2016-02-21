@@ -168,19 +168,12 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
   $scope.authObj = $firebaseAuth(new Firebase("https://sidehunt.firebaseio.com/"));
   var authData = $scope.authObj.$getAuth();
 
-
-  
-
-
-
-
   var url = 'https://sidehunt.firebaseio.com/';
   
 
   $scope.addNewIdea = function () {
     $scope.ideaToAdd = $firebaseArray(new Firebase(url+'idea'))
     $scope.ideaToAdd.$add({
-      githubName: $scope.githubNameModel,
       type: 'idea',
       title: $scope.titleModel,
       description: $scope.descriptionModel,
@@ -247,13 +240,18 @@ app.controller('GitHubCtrl', function($scope, $http, githubstats) {
 })
 
 
-app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, itemToShow, MainFactory) {
+app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, itemToShow, MainFactory, $firebaseAuth) {
   $scope.project = itemToShow;
   $scope.type = $stateParams.type
   var projectId = $stateParams.projectId;
   var url = 'https://sidehunt.firebaseio.com/'+$stateParams.type+'/'+projectId+'/comments';
   var projectCommentsRef = new Firebase(url)
   $scope.storm = $firebaseArray(projectCommentsRef);
+
+  //firebase authentication
+  $scope.authObj = $firebaseAuth(new Firebase("https://sidehunt.firebaseio.com/"));
+  // var authData = $scope.authObj.$getAuth();
+  $scope.user = $scope.authObj.$getAuth();
 
   $scope.commentToAdd = {};
   angular.extend($scope, MainFactory)
@@ -266,11 +264,18 @@ app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $st
     })
   } 
 
+  $scope.removeComment = function (comment) {
+    if(comment.user.id === $scope.user.github.id) {
+      $scope.storm.$remove(comment)  
+    }    
+  }
+
   $scope.addComment = function () {
     $scope.storm.$add({
       text: $scope.commentToAdd.text,
       timestamp: Firebase.ServerValue.TIMESTAMP,
-      likes: 0
+      likes: 0,
+      user: $scope.user.github
     })
 
     $scope.commentToAdd.text = '';
