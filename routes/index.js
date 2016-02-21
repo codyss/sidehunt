@@ -83,32 +83,41 @@ router.get('/api/projects/:id', function (req, res, next) {
 var githubStats;
 
 router.get('/api/gitstats', function (req, res, next) {
-    githubStats = [];
+    
     var url = 'https://github.com/';
-    var students = ['codyss', 'apackin', 'jmeeke02'];
-    var studentsArr = students;
+    var students = ['codyss', 'apackin', 'jmeeke02', 'elpenao', 'gholevas', 
+        'ilydnic', 'jeremybini', 'jrauschenberg', 'MattHsiung', 'mb389', 'pipemadame', 
+        'ris0', 'shiningnova57', 'sp6pe', 'Camo13ammo'];
+    // var studentsArr = students;
     var userUrls = [];
 
-    res.json({});
+    if (githubStats) {
+      res.json(githubStats);      
+    } else {
+      githubStats = [];
 
-    (function runStudents () {
-      sjs.StaticScraper
-        .create(url + students[0])
-        .scrape(function($) {
-            return $('.contrib-number').map(function() {
-                return $(this).text();
-            }).get()
-        })
-        .then(function(stats) {
-          var obj = {};
-          obj.student = students[0]
-          obj.stats = stats;
-          githubStats.push(obj);
-          console.log(stats);
-          students.shift();
-          if(students.length>0) runStudents();
-        })
-    })()
+      res.json({});
+
+      (function runStudents () {
+        sjs.StaticScraper
+          .create(url + students[0])
+          .scrape(function($) {
+              return $('.contrib-number').map(function() {
+                  return $(this).text();
+              }).get()
+          })
+          .then(function(stats) {
+            var obj = {};
+            obj.student = students[0]
+            obj.stats = stats;
+            githubStats.push(obj);
+            console.log(stats);
+            students.shift();
+            if(students.length>0) runStudents();
+          })
+      })()
+    }
+
 })
 
 router.get('/api/studentstats', function (req, res, next) {

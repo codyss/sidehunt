@@ -153,7 +153,8 @@ app.controller('Add', function ($rootScope, $scope, AddFactory) {
   
 })
 
-app.controller('GitHubCtrl', function($scope, $http) {
+app.controller('GitHubCtrl', function($scope, $http, githubstats) {
+  $scope.studentStats = githubstats;
   $scope.getStudentStats = function () {
     $http.get('/api/studentstats')
       .then(res => res.data)
