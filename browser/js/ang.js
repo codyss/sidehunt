@@ -139,15 +139,16 @@ app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScop
 
   var ref = new Firebase("https://sidehunt.firebaseio.com/");
   $scope.authObj = $firebaseAuth(ref);
+  $scope.user = $scope.authObj.$getAuth();
 
   $scope.logIn = function () {
     $scope.authObj.$authWithOAuthPopup("github").then(function(authData) {
-      console.log("Logged in as:", authData.uid);
+      // console.log("Logged in as:", authData.uid);
     }).catch(function(error) {
-      console.error("Authentication failed:", error);
+      // console.error("Authentication failed:", error);
     });  
 
-    var authData = $scope.authObj.$getAuth();
+    $scope.user = $scope.authObj.$getAuth();
   }
 
   
