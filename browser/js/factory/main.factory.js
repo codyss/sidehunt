@@ -1,4 +1,4 @@
-app.factory('MainFactory', function($http) {
+app.factory('MainFactory', function($http, $firebaseArray, $firebaseObject) {
     
   var MainFactory = {};
 
@@ -16,13 +16,19 @@ app.factory('MainFactory', function($http) {
 
 
   MainFactory.upVote = function (projectObj, type, projects) {
-    $http.post('/upvote/'+ type, {id: projectObj._id})
-    .then(function (res) {
-      projectObj.upVotes = res.data.upVotes;
-      projects.sort(function(a, b) {
-        return b.upVotes - a.upVotes;
-      })
-    })
+    var url = 'https://sidehunt.firebaseio.com/';
+    var ideaToAddUpVote = $firebaseObject(new Firebase(url+type+'/'+projectObj.$id))
+    ideaToAddUpVote.$loaded().then(function() {
+      ideaToAddUpVote.upVotes = projectObj.upVotes + 1;
+      ideaToAddUpVote.$save()  
+    })  
+    // $http.post('/upvote/'+ type, {id: projectObj._id})
+    // .then(function (res) {
+    //   projectObj.upVotes = res.data.upVotes;
+    //   projects.sort(function(a, b) {
+    //     return b.upVotes - a.upVotes;
+    //   })
+    // })
   }
 
   MainFactory.scrollRightProject = function () {
