@@ -69,12 +69,12 @@ app.config(function($stateProvider) {
 
 app.config(function($stateProvider) {
   $stateProvider.state('ProjectStorm', {
-    url: '/project/:projectId',
+    url: '/detail/:type/:projectId',
     templateUrl: '/projectstorm.html',
     controller: 'FireCtrl',
     resolve: {
-      itemToShow: function(MainFactory, $stateParams) {
-        return MainFactory.getProject($stateParams.projectId)
+      itemToShow: function($firebaseObject, $stateParams) {
+        return $firebaseObject(new Firebase('https://sidehunt.firebaseio.com/'+$stateParams.type+'/'+$stateParams.projectId)).$loaded()
       }
     }
   })
@@ -91,7 +91,7 @@ app.directive('projectDirective', function (MainFactory) {
             <text id="thumb-project-user">{{project.userName}}</text>
             <p>{{project.description}}</p>
             <p><a href="{{project.repo}}" class="btn btn-primary details-button" role="button">Repo</a>
-            <a href="project/{{project._id}}" class="btn btn-primary details-button" role="button">Discuss</a> 
+            <a href="detail/project/{{project.$id}}" class="btn btn-primary details-button" role="button">Discuss</a> 
             <up-vote-button project="project" type="project" ng-click="upVote(project,'project', projects)"></up-vote-button>
             <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.imgPath}}"></a></p>
         </div>`,
@@ -111,7 +111,7 @@ app.directive('ideaDirective', function (MainFactory) {
                 <text id="thumb-idea-name">{{idea.title}}</text><br>
                 <text id="thumb-idea-user">{{idea.userName}}</text>
                 <p>{{idea.description}}</p>
-                <p><a href="/idea/{{idea._id}}" class="btn btn-primary details-button" role="button">Details</a> 
+                <p><a href="detail/idea/{{idea.$id}}" class="btn btn-primary details-button" role="button">Details</a> 
                 <up-vote-button idea="idea" type="idea" ng-click="upVote(idea,'idea', ideas)"></up-vote-button>
                 <a class="btn btn-primary user-pic" data-image="{{idea.imgPath}}" data-user="{{idea.githubName}}" data-title="{{idea.userName}}" data-placement="top" role="button" title="{{idea.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{idea.imgPath}}" /></div>'><img src="{{idea.imgPath}}"></a>
                <!--  <a href="" class="btn btn-primary details-button" role="button">{{Details}}</a> --></p>
@@ -158,6 +158,7 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
     $scope.ideaToAdd = $firebaseArray(new Firebase(url+'idea'))
     $scope.ideaToAdd.$add({
       githubName: $scope.githubNameModel,
+      type: 'idea',
       title: $scope.titleModel,
       description: $scope.descriptionModel,
       upVotes: 0,
@@ -173,6 +174,7 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
     $scope.projectToAdd.$add({
       githubName: $scope.githubName,
       title: $scope.title,
+      type: 'project',
       description: $scope.description,
       repo: $scope.githubRepo,
       githubData: "",
@@ -224,20 +226,21 @@ app.controller('GitHubCtrl', function($scope, $http, githubstats) {
 
 app.controller('FireCtrl', function($scope, $firebaseArray, $firebaseObject, $stateParams, itemToShow, MainFactory) {
   $scope.project = itemToShow;
-  var project = $stateParams.projectId;
-  var url = 'https://sidehunt.firebaseio.com/projectcomments/'+project;
+  $scope.type = $stateParams.type
+  var projectId = $stateParams.projectId;
+  var url = 'https://sidehunt.firebaseio.com/'+$stateParams.type+'/'+projectId+'/comments';
   var projectCommentsRef = new Firebase(url)
   $scope.storm = $firebaseArray(projectCommentsRef);
 
   $scope.commentToAdd = {};
   angular.extend($scope, MainFactory)
 
-  //figure out how to save the comment on the project
   $scope.like = function (comment) {
-    var newUrl = url+'/'+comment.$id+'/likes'
-    var obj = $firebaseObject(new Firebase(newUrl))
-    obj.$value = comment.likes+1
-    obj.$save();
+    var obj = $firebaseObject(new Firebase(url+'/'+comment.$id));
+    obj.$loaded().then(() => {
+      obj.likes = comment.likes+1
+      obj.$save();
+    })
   } 
 
   $scope.addComment = function () {
