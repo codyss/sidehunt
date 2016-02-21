@@ -144,12 +144,51 @@ app.controller('main', function ($scope, MainFactory, data, $rootScope) {
   $rootScope.showSearch = false;
 })
 
-app.controller('Add', function ($rootScope, $scope, AddFactory) {
+app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, $state) {
   $rootScope.showSearch = true;
+  angular.extend($scope, AddFactory)
 
-  $scope.addIdea = function () {
-    AddFactory.addIdea($scope.githubNameModel, $scope.titleModel, $scope.descriptionModel);
+  var url = 'https://sidehunt.firebaseio.com/';
+  
+
+  $scope.addNewIdea = function () {
+    $scope.ideaToAdd = $firebaseArray(new Firebase(url+'idea'))
+    $scope.ideaToAdd.$add({
+      githubName: $scope.githubNameModel,
+      title: $scope.titleModel,
+      description: $scope.descriptionModel,
+      upVotes: 0,
+      user: ""
+    })
+    $state.go('index');
   }
+
+
+  $scope.addNewProject = function () {
+    $scope.githubName = AddFactory.nameFromRepo($scope.githubRepo)[0]
+    $scope.projectToAdd = $firebaseArray(new Firebase(url+'project'))
+    $scope.projectToAdd.$add({
+      githubName: $scope.githubName,
+      title: $scope.title,
+      description: $scope.description,
+      repo: $scope.githubRepo,
+      githubData: "",
+      upVotes: 0,
+      user: "",
+      websiteImg: "",
+      imgPath: "",
+      upVotes: 0,
+      upVoters: "",
+      comments: []
+    })
+    $state.go('index');
+  }
+
+  
+
+  // $scope.addIdea = function () {
+  //   AddFactory.addIdea($scope.githubNameModel, $scope.titleModel, $scope.descriptionModel);
+  // }
   
 })
 
