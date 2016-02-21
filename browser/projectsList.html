@@ -9,7 +9,7 @@
  -->
 
 
-
+<div class="ng-cloak">
     <div class="scroll-heading">
       <span class='section-name'>Projects</span>
       <span class="section-scroll">
@@ -22,7 +22,7 @@
     <div class="side-list-project">
      <div class="row">
     <!-- <div class=""> -->
-      <div class="thumbnail" ng-repeat="project in projects | filter:searchText"> <!-- friendObj in friends | filter:search:strict GIVE THIS  A MAX SIZE /github-octocat.png" /webimg/{{project.urlTitle}}_img.png -->
+      <div class="thumbnail" ng-repeat="project in projects | orderBy: '-upVotes' | filter:searchText"> <!-- friendObj in friends | filter:search:strict GIVE THIS  A MAX SIZE /github-octocat.png" /webimg/{{project.urlTitle}}_img.png -->
       <project-directive></project-directive>
         
       </div>
@@ -42,10 +42,11 @@
       <div class="side-list-idea">
         <div class="row">
           <!-- <div class="col-sm-6 col-lg-3"> -->
-            <div class="thumbnail" ng-repeat="idea in ideas | filter:searchText">
+            <div class="thumbnail" ng-repeat="idea in ideas | orderBy: '-upVotes' | filter:searchText">
             <idea-directive></idea-directive>
               
             </div>
           <!-- </div> -->
         </div>
       </div>
+</div>

@@ -4,7 +4,13 @@ app.factory('AddFactory', function($http, $state) {
 
   AddFactory.addIdea = function (githubName, title, description) {
     $http.post('/api/addidea', {githubName: githubName, title: title, description: description});
+
     $state.go('index');
+  }
+
+  AddFactory.nameFromRepo = function (address) {
+    var adArr = address.split('/');
+    return adArr.slice(-2,-1);
   }
 
   // MainFactory.getData = function () {
