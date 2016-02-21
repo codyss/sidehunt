@@ -133,10 +133,23 @@ app.directive('upVoteButton', function () {
     }
   })
 
-app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScope) {
-
+app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScope, $firebaseAuth) {
   $scope.projects = projects;
   $scope.ideas = ideas;
+
+  var ref = new Firebase("https://sidehunt.firebaseio.com/");
+  $scope.authObj = $firebaseAuth(ref);
+
+  $scope.logIn = function () {
+    $scope.authObj.$authWithOAuthPopup("github").then(function(authData) {
+      console.log("Logged in as:", authData.uid);
+    }).catch(function(error) {
+      console.error("Authentication failed:", error);
+    });  
+
+    var authData = $scope.authObj.$getAuth();
+  }
+
   
   $scope.scrollRightProject = MainFactory.scrollRightProject;
   $scope.scrollRightIdea = MainFactory.scrollRightIdea;
@@ -147,9 +160,17 @@ app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScop
   $rootScope.showSearch = false;
 })
 
-app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, $state) {
+app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, $state, $firebaseAuth) {
   $rootScope.showSearch = true;
   angular.extend($scope, AddFactory)
+
+  //firebase authentication
+  var ref = new Firebase("https://sidehunt.firebaseio.com/");
+  $scope.authObj = $firebaseAuth(ref);
+  var authData = $scope.authObj.$getAuth();
+  
+
+
 
   var url = 'https://sidehunt.firebaseio.com/';
   
