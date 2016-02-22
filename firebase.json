@@ -1,0 +1,19 @@
+{
+  "firebase": "sidehunt",
+  "public": "browser",
+  "ignore": [
+    "firebase.json",
+    "modes/",
+    "public/",
+    "routes/",
+    "assets/",
+    "**/.*",
+    "**/node_modules/**"
+  ], 
+  "cleanUrls": true,
+  "redirects": [{
+    "source" : "/index",
+    "destination" : "/",
+    "type" : 301
+  }]
+}

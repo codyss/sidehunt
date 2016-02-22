@@ -38,7 +38,7 @@ app.use(morgan('dev'));
 app.use(sass({
     /* Options */
     src: path.join(__dirname, 'assets'),
-    dest: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'browser'),
     debug: true,
     outputStyle: 'compressed',
     prefix:  '/prefix'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/> 

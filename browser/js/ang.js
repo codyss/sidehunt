@@ -85,7 +85,7 @@ app.directive('projectDirective', function (MainFactory) {
   return {
     restrict: 'E',
     template: `        
-        <img id="project_img" class="img-responsive" src="/github-octocat.png">
+        <img id="project_img" class="img-responsive" src="/imgs/github-octocat.png">
           <div class="caption"> <!-- GIVE THIS  A MAX SIZE -->
             <text id="thumb-project-name">{{project.title}}</text><br>
             <text id="thumb-project-user">{{project.user.displayName}}</text>
@@ -106,7 +106,7 @@ app.directive('ideaDirective', function (MainFactory) {
   return {
     restrict: 'E',
     template: `        
-        <img id="project_img" class="img-responsive" src="/github-octocat.png">
+        <img id="project_img" class="img-responsive" src="imgs/github-octocat.png">
               <div class="caption">
                 <text id="thumb-idea-name">{{idea.title}}</text><br>
                 <text id="thumb-idea-user">{{idea.user.displayName}}</text>
