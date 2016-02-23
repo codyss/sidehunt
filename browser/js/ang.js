@@ -35,18 +35,18 @@ app.config(function($stateProvider) {
   })
 });
 
-app.config(function($stateProvider) {
-  $stateProvider.state('githubstats', {
-    url: '/githubstats',
-    templateUrl: '/githubstats.html',
-    controller: 'GitHubCtrl',
-    resolve: {
-      githubstats: function ($http) {
-        return $http.get('api/gitstats').then(res => res.data)
-      }
-    }
-  })
-})
+// app.config(function($stateProvider) {
+//   $stateProvider.state('githubstats', {
+//     url: '/githubstats',
+//     templateUrl: '/githubstats.html',
+//     controller: 'GitHubCtrl',
+//     resolve: {
+//       githubstats: function ($http) {
+//         return $http.get('api/gitstats').then(res => res.data)
+//       }
+//     }
+//   })
+// })
 
 
 
@@ -95,8 +95,13 @@ app.directive('projectDirective', function (MainFactory) {
             <up-vote-button project="project" type="project" ng-click="upVote(project,'project', projects)"></up-vote-button>
             <a class="btn btn-primary user-pic" data-image="{{project.imgPath}}" data-user="{{project.githubName}}" data-title="{{project.userName}}" data-placement="top" role="button" title="{{project.userName}}" data-toggle="popover" data-trigger="click" data-content='<div class="popOverBox"><img src="{{project.imgPath}}" /></div>'><img src="{{project.user.profileImageURL}}"></a></p>
         </div>`,
-    link: function($scope) {
+    link: function($scope, $firebaseAuth, $firebaseObject) {
       angular.extend($scope, MainFactory)
+      // $scope.user = $firebaseAuth(new Firebase("https://sidehunt.firebaseio.com/")).$getAuth();
+      // ng-disabled="previouslyVoted"
+      // $scope.previouslyVoted = function (project) {
+      //   $firebaseObject(new Firebase("https://sidehunt.firebaseio.com/project/"+project.$id))
+      // }  
     }
 
   }
@@ -200,7 +205,6 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
       websiteImg: "",
       imgPath: "",
       upVotes: 0,
-      upVoters: "",
       comments: []
     })
     $state.go('index');
