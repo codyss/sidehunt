@@ -6,6 +6,8 @@
         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Log In with Github
       </button>
     </div>
+      
+
 
 <!--     <div>
       <button uib-popover-template="dynamicPopover.templateUrl" popover-trigger="click" popover-placement="top" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Popover With Template</button>
@@ -53,4 +55,14 @@
           <!-- </div> -->
         </div>
       </div>
+      <script type="text/ng-template" id="logInPopUp">
+      <div class="ngdialog-message">
+        <h2>Welcome to 1601 Side Hunt</h2>
+        <div>Log in with Github to starting sharing and discussing projects!</div>
+        <br>
+              <button id="login" ng-click="logIn()" ng-hide="user.github" type="button" class="btn btn-default btn-lg">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Log In with Github
+      </button>
+      </div>
+    </script>
 </div>

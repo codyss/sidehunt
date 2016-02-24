@@ -26,16 +26,6 @@ app.factory('MainFactory', function($http, $firebaseArray, $firebaseObject, $fir
           }
         })
         return upVoters.$add(user.uid)
-
-        // console.log(upVoters)
-
-        // // console.log(upVoters[0].$value)
-        // // console.log(upVoters.$indexFor(user.uid))
-        // if (upVoters.$indexFor(user.uid) < 0) {
-        //   return 
-        // } else {
-        //   throw Error
-        // }
     })
     .then(() => {
       var ideaToAddUpVote = $firebaseObject(new Firebase(url+type+'/'+projectObj.$id))

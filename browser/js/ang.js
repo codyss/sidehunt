@@ -1,4 +1,4 @@
-var app = angular.module('sidehunt', ['ui.router', 'ui.bootstrap', 'firebase']);
+var app = angular.module('sidehunt', ['ui.router', 'ui.bootstrap', 'firebase', 'ngDialog']);
 
 app.config(function($urlRouterProvider) {
   $urlRouterProvider.when('/', '/index')
@@ -138,13 +138,22 @@ app.directive('upVoteButton', function () {
     }
   })
 
-app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScope, $firebaseAuth) {
+
+app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScope, $firebaseAuth, ngDialog) {
   $scope.projects = projects;
   $scope.ideas = ideas;
 
   var ref = new Firebase("https://sidehunt.firebaseio.com/");
   $scope.authObj = $firebaseAuth(ref);
-  $scope.user = $scope.authObj.$getAuth();
+
+  $scope.authObj.$onAuth(authData => {
+    $scope.user = authData
+    if(!authData) {
+      ngDialog.open({
+        template: 'logInPopUp'
+      });
+    }
+  })
 
   $scope.logIn = function () {
     $scope.authObj.$authWithOAuthPopup("github").then(function(authData) {
@@ -153,7 +162,9 @@ app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScop
       // console.error("Authentication failed:", error);
     });  
 
-    $scope.user = $scope.authObj.$getAuth();
+    $scope.authObj.$onAuth(authData => {
+      $scope.user = authData
+    })
   }
 
   
@@ -161,6 +172,11 @@ app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScop
   $scope.scrollRightIdea = MainFactory.scrollRightIdea;
   $scope.scrollLeftProject = MainFactory.scrollLeftProject;
   $scope.scrollLeftIdea = MainFactory.scrollLeftIdea; 
+
+  $scope.modalShown = false;
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
 
 
   $rootScope.showSearch = false;
@@ -171,11 +187,13 @@ app.controller('Add', function ($rootScope, $scope, AddFactory, $firebaseArray, 
   angular.extend($scope, AddFactory)
 
   //firebase authentication
+  var authData;
   $scope.authObj = $firebaseAuth(new Firebase("https://sidehunt.firebaseio.com/"));
-  var authData = $scope.authObj.$getAuth();
+  $scope.authObj.$onAuth(auth => {
+      authData = auth
+    })
 
   var url = 'https://sidehunt.firebaseio.com/';
-  
 
   $scope.addNewIdea = function () {
     $scope.ideaToAdd = $firebaseArray(new Firebase(url+'idea'))
