@@ -139,7 +139,7 @@ app.directive('upVoteButton', function () {
   })
 
 
-app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScope, $firebaseAuth, ngDialog) {
+app.controller('main', function ($scope, $rootScope, MainFactory, ideas, projects, $rootScope, $firebaseAuth, ngDialog) {
   $scope.projects = projects;
   $scope.ideas = ideas;
 
@@ -155,7 +155,7 @@ app.controller('main', function ($scope, MainFactory, ideas, projects, $rootScop
     }
   })
 
-  $scope.logIn = function () {
+  $rootScope.logIn = function () {
     $scope.authObj.$authWithOAuthPopup("github").then(function(authData) {
       // console.log("Logged in as:", authData.uid);
     }).catch(function(error) {

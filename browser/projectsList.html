@@ -15,7 +15,7 @@
  -->
 
 
-<div class="ng-cloak">
+<div>
     <div class="scroll-heading">
       <span class='section-name'>Projects</span>
       <span class="section-scroll">
@@ -60,7 +60,7 @@
         <h2>Welcome to 1601 Side Hunt</h2>
         <div>Log in with Github to starting sharing and discussing projects!</div>
         <br>
-              <button id="login" ng-click="logIn()" ng-hide="user.github" type="button" class="btn btn-default btn-lg">
+              <button id="login" ng-click="logIn(); closeThisDialog('true')" ng-hide="user.github" type="button" class="btn btn-default btn-lg">
         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Log In with Github
       </button>
       </div>
