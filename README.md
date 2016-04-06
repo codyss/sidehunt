@@ -1,7 +1,13 @@
-Structure for new Express App
+Side project while studying at Fullstack Academy
 
-1) Uses Mongoose for Mongo DB
-2) Swig for Templating
-3) SCSS
-4) Uses Bootstrap
-5) Socket.io
+Side Hunt - a product hunt clone - allows students to share their projects and ideas and discuss eachother's work.
+
+Site was iterated through development and studies from static application using Express/Node and Swig for templating to Angular and Firebase for a real-time SPA.
+
+Technologies used:
+- Javascript
+- Angular
+- Firebase
+- MongoDB
+- Node.js
+- Express
